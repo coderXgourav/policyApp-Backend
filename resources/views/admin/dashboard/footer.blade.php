@@ -23,6 +23,9 @@ class="footer bg-neutral-0 dark:bg-neutral-904 text-neutral-700 dark:text-neutra
 </footer>
 
 <!-- js libraries and custom scripts -->
+<script src="{{url('assets/js/libs/quill.js')}}"></script>
+<script src="{{url('assets/js/libs/dropzone.min.js')}}"></script>
+
 <script src="{{url('assets/js/libs/apexcharts.min.js')}}"></script>
 <script src="{{url('assets/js/libs/swiper-bundle.min.js')}}"></script>
 <script src="{{url('assets/js/libs/alpine.collapse.js')}}"></script>
@@ -31,6 +34,12 @@ class="footer bg-neutral-0 dark:bg-neutral-904 text-neutral-700 dark:text-neutra
 <script src="{{url('assets/js/libs/nice-select2.js')}}"></script>
 <script src="{{url('assets/js/charts.js')}}"></script>
 <script src="{{url('assets/js/main.js')}}"></script>
+
+
+
+{{-- ADMIN FOOTER  --}}
+
+
 
 </body>
 
