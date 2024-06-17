@@ -516,7 +516,7 @@
                 <a href="{{url('/admin/add-mcq')}}" class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">Add MCQ</a>
               </li>
               <li>
-                <a href="{{url('/admin/view-mcq')}}" class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">View MCQ</a>
+                <a href="{{url('/admin/add-mcq')}}" class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">View MCQ</a>
               </li>
             </ul>
           </div>
@@ -602,28 +602,28 @@
             </a>
           </li>
           <li class="flex xl:justify-center group-hover:justify-start w-full">
-            <a href="e-commerce.html"
+            <a href="#"
               class="flex items-center xl:size-[44px] menu-link group-hover:w-full xl:justify-center group-hover:justify-start gap-2 hover:bg-primary-50 duration-300 xl:rounded-full rounded-xl group-hover:rounded-xl py-2 px-3">
               <i class="las la-shopping-bag text-xl text-primary-300"></i>
               <span class="xl:hidden group-hover:block">E-commerce</span>
             </a>
           </li>
           <li class="flex xl:justify-center group-hover:justify-start w-full">
-            <a href="analytics.html"
+            <a href="#"
               class="flex items-center xl:size-[44px] menu-link group-hover:w-full xl:justify-center group-hover:justify-start gap-2 hover:bg-primary-50 duration-300 xl:rounded-full rounded-xl group-hover:rounded-xl py-2 px-3">
               <i class="las la-chart-bar text-xl text-primary-300"></i>
               <span class="xl:hidden group-hover:block">Analytics</span>
             </a>
           </li>
           <li class="flex xl:justify-center group-hover:justify-start w-full">
-            <a href="banking.html"
+            <a href="#"
               class="flex items-center xl:size-[44px] menu-link group-hover:w-full xl:justify-center group-hover:justify-start gap-2 hover:bg-primary-50 duration-300 xl:rounded-full rounded-xl group-hover:rounded-xl py-2 px-3">
               <i class="las la-piggy-bank text-xl text-primary-300"></i>
               <span class="xl:hidden group-hover:block">Banking</span>
             </a>
           </li>
           <li class="flex xl:justify-center group-hover:justify-start w-full">
-            <a href="booking.html"
+            <a href="#"
               class="flex items-center xl:size-[44px] menu-link group-hover:w-full xl:justify-center group-hover:justify-start gap-2 hover:bg-primary-50 duration-300 xl:rounded-full rounded-xl group-hover:rounded-xl py-2 px-3">
               <i class="las la-plane-departure text-xl text-primary-300"></i>
               <span class="xl:hidden group-hover:block">Booking</span>
@@ -679,27 +679,27 @@
                 class="mt-3 ltr:ml-6 rtl:mr-6 flex-col ltr:border-l rtl:border-r xl:hidden group-hover:flex border-primary-300"
                 data-submenu="user">
                 <li>
-                  <a href="user-profile.html"
+                  <a href="#"
                     class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-h">Profile</a>
                 </li>
                 <li>
-                  <a href="user-cards.html"
+                  <a href="#"
                     class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-h">Cards</a>
                 </li>
                 <li>
-                  <a href="user-list.html"
+                  <a href="#"
                     class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-h">List</a>
                 </li>
                 <li>
-                  <a href="create-user.html"
+                  <a href="#"
                     class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-h">Create</a>
                 </li>
                 <li>
-                  <a href="edit-user.html"
+                  <a href="#"
                     class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-h">Edit</a>
                 </li>
                 <li>
-                  <a href="user-account.html"
+                  <a href="#"
                     class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-h">Account</a>
                 </li>
               </ul>
@@ -725,23 +725,23 @@
                 class="mt-3 ltr:ml-6 rtl:mr-6 flex-col ltr:border-l rtl:border-r xl:hidden group-hover:flex border-primary-300"
                 data-submenu="product">
                 <li>
-                  <a href="product-list.html"
+                  <a href="#"
                     class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-h">List</a>
                 </li>
                 <li>
-                  <a href="product-details.html"
+                  <a href="#"
                     class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-h">Details</a>
                 </li>
                 <li>
-                  <a href="create-product.html"
+                  <a href="#"
                     class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-h">Create</a>
                 </li>
                 <li>
-                  <a href="edit-product.html"
+                  <a href="#"
                     class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-h">Edit</a>
                 </li>
                 <li>
-                  <a href="manage-review.html"
+                  <a href="#"
                     class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-h">Manage
                     Review</a>
                 </li>
@@ -997,13 +997,13 @@
           <ul class="flex gap-5 items-center">
             <li><a href="#"
                 class="inline-flex py-3 text-sm font-medium menu-horizontal">App</a></li>
-            <li><a href="e-commerce.html"
+            <li><a href="#"
                 class="inline-flex py-3 text-sm font-medium menu-horizontal">E-commerce</a></li>
-            <li><a href="analytics.html"
+            <li><a href="#"
                 class="inline-flex py-3 text-sm font-medium menu-horizontal">Analytics</a></li>
             <li><a href="banking.html"
                 class="inline-flex py-3 text-sm font-medium menu-horizontal">Banking</a></li>
-            <li><a href="booking.html"
+            <li><a href="#"
                 class="inline-flex py-3 text-sm font-medium menu-horizontal">Booking</a></li>
             <li><a href="file.html"
                 class="inline-flex py-3 text-sm font-medium menu-horizontal">File</a></li>
@@ -1014,17 +1014,17 @@
                   class="las la-minus hidden text-lg group-hover:inline-block"></i></button>
               <ul
                 class="absolute invisible group-hover:visible translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 top-full z-10 left-0 w-[180px] p-1.5 rounded-lg shadow-[rgba(100,100,111,0.2)_0px_7px_29px_0px] text-sm duration-300 bg-neutral-0 dark:bg-neutral-904">
-                <li><a href="user-profile.html"
+                <li><a href="#"
                     class="py-1.5 px-2 rounded-md hover:bg-primary-50 hover:text-primary-300 duration-300 block submenu-horizontal">Profile</a></li>
-                <li><a href="user-cards.html"
+                <li><a href="#"
                     class="py-1.5 px-2 rounded-md hover:bg-primary-50 hover:text-primary-300 duration-300 block submenu-horizontal">Cards</a></li>
-                <li><a href="user-list.html"
+                <li><a href="#"
                     class="py-1.5 px-2 rounded-md hover:bg-primary-50 hover:text-primary-300 duration-300 block submenu-horizontal">List</a></li>
-                <li><a href="create-user.html"
+                <li><a href="#"
                     class="py-1.5 px-2 rounded-md hover:bg-primary-50 hover:text-primary-300 duration-300 block submenu-horizontal">Create</a></li>
-                <li><a href="edit-user.html"
+                <li><a href="#"
                     class="py-1.5 px-2 rounded-md hover:bg-primary-50 hover:text-primary-300 duration-300 block submenu-horizontal">Edit</a></li>
-                <li><a href="user-account.html"
+                <li><a href="#"
                     class="py-1.5 px-2 rounded-md hover:bg-primary-50 hover:text-primary-300 duration-300 block submenu-horizontal">Account</a></li>
               </ul>
             </li>
@@ -1035,15 +1035,15 @@
                   class="las la-minus hidden text-lg group-hover:inline-block"></i></button>
               <ul
                 class="absolute invisible group-hover:visible translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 top-full z-10 left-0 w-[180px] p-1.5 rounded-lg shadow-[rgba(100,100,111,0.2)_0px_7px_29px_0px] text-sm duration-300 bg-neutral-0 dark:bg-neutral-904">
-                <li><a href="product-list.html"
+                <li><a href="#"
                     class="py-1.5 px-2 rounded-md hover:bg-primary-50 hover:text-primary-300 duration-300 block submenu-horizontal">List</a></li>
-                <li><a href="product-details.html"
+                <li><a href="#"
                     class="py-1.5 px-2 rounded-md hover:bg-primary-50 hover:text-primary-300 duration-300 block submenu-horizontal">Details</a></li>
-                <li><a href="create-product.html"
+                <li><a href="#"
                     class="py-1.5 px-2 rounded-md hover:bg-primary-50 hover:text-primary-300 duration-300 block submenu-horizontal">Create</a></li>
-                <li><a href="edit-product.html"
+                <li><a href="#"
                     class="py-1.5 px-2 rounded-md hover:bg-primary-50 hover:text-primary-300 duration-300 block submenu-horizontal">Edit</a></li>
-                <li><a href="manage-review.html"
+                <li><a href="#"
                     class="py-1.5 px-2 rounded-md hover:bg-primary-50 hover:text-primary-300 duration-300 block submenu-horizontal">Manage
                     Review</a></li>
                 <li><a href="referrals.html"
