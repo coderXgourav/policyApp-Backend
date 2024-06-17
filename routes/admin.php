@@ -21,3 +21,10 @@ Route::get('/admin/add-policy',function(){
 Route::get('/admin/view-policy',function(){
     return view('admin.dashboard.policy.viewPolicy');
 });
+Route::get('/admin/add-employee',function(){
+    return view('admin.dashboard.employee.addEmployee');
+});
+Route::get('/admin/add-mcq',function(){
+    return view('admin.dashboard.mcq.addMcq');
+});
+
