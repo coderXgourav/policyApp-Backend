@@ -68,6 +68,19 @@
                       <input type="text" id="zip" name="zip" placeholder="Enter Zip..." class="w-full s-text bg-transparent py-2.5 xl:py-3.5" />
                     </div>
                   </div>
+                  <div class="col-span-2 md:col-span-1">
+                    <div class="relative flex items-center gap-4 rounded-xl border border-neutral-40 w-full px-4 dark:border-neutral-500 lg:px-6">
+                      <label for="city" class="absolute -top-2 bg-neutral-20 px-2 text-xs dark:bg-neutral-903">Password</label>
+                      <input type="text" name="city" id="city" placeholder=" Password..." class="w-full s-text bg-transparent py-2.5 xl:py-3.5" />
+                    </div>
+                  </div>
+                  
+                  <div class="col-span-2 md:col-span-1">
+                    <div class="relative flex items-center gap-4 rounded-xl border border-neutral-40 w-full px-4 dark:border-neutral-500 lg:px-6">
+                      <label for="zip" class="absolute -top-2 bg-neutral-20 px-2 text-xs dark:bg-neutral-903">Confirm Password</label>
+                      <input type="text" id="zip" name="zip" placeholder="Confirm Password..." class="w-full s-text bg-transparent py-2.5 xl:py-3.5" />
+                    </div>
+                  </div>
                   <div class="col-span-2">
                     <div class="" class="">
                      <select name="empType" id="" class="selectForm">
@@ -84,7 +97,7 @@
       
                 </div>
                 <div class="flex gap-4 xxl:gap-6">
-                  <button class="btn-primary">Create User</button>
+                  <button class="btn-primary">Add Employee</button>
                   <button class="btn-primary-outlined">Cancel</button>
                 </div>
               </div>

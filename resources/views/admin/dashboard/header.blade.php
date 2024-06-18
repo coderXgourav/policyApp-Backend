@@ -298,7 +298,7 @@
 
 
 
-            {{-- <button
+            <button
               :class="$store.app.menu=='horizontal'?'bg-neutral-0 dark:bg-neutral-903':'bg-neutral-20 dark:bg-neutral-903'"
               x-cloak
               x-show="$store.app.theme === 'light'"
@@ -310,7 +310,7 @@
               @click="$store.app.toggleTheme('light')"
               class="flex size-9 items-center justify-center rounded-full border border-neutral-30 bg-neutral-20 text-xl dark:border-neutral-500 dark:bg-neutral-700">
               <i class="las la-sun"></i>
-            </button> --}}
+            </button>
             
 
             <!-- Language switch -->
@@ -517,6 +517,22 @@
               </li>
               <li>
                 <a href="{{url('/admin/add-mcq')}}" class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">View MCQ</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="relative">
+          <button :class="opened=='job' ? 'bg-primary-50 text-primary-300' : ''" @click="opened=='job' ? opened = null : opened='job'" class="flex w-full items-center justify-between gap-2 hover:bg-primary-50 duration-300 rounded-lg p-2 xxl:px-3">
+            <span class="flex items-center gap-2">
+              <i class="las la-briefcase text-xl text-primary-300"></i>
+              <span>Set Passing Marks</span>
+            </span>
+            <i :class="opened=='job' ? 'las la-minus rotate-180 text-primary-300' : 'las la-plus'" class="text-lg duration-300"></i>
+          </button>
+          <div x-show="opened=='job'" x-collapse>
+            <ul class="mt-3 ltr:ml-6 rtl:mr-6 flex-col ltr:border-l rtl:border-r group-hover:flex border-primary-300" data-submenu="job">
+              <li>
+                <a href="{{url('/admin/set-mcq-marks')}}" class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">Set marks</a>
               </li>
             </ul>
           </div>

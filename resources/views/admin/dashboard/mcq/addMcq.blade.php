@@ -3,12 +3,14 @@
     .selectForm{
     outline: none;
     border-radius: 8px;
+    padding-left: 8px;
     }
     .selectForm option{
       color: black;
     }
 
     .selectForm1{
+    padding-left: 8px;
         border: 1px solid gray;
     outline: none;
     border-radius: 8px;
@@ -57,7 +59,7 @@
                   <div class="col-span-2 md:col-span-1">
                     <div class="relative flex items-center gap-4 rounded-xl border border-neutral-40 w-full px-4 dark:border-neutral-500 lg:px-6">
                       <label for="email" class="absolute -top-2 bg-neutral-20 px-2 text-xs dark:bg-neutral-903"> Option A</label>
-                      <input type="email"name="text"  id="text" placeholder="Option A answer..." class="w-full s-text bg-transparent py-2.5 xl:py-3.5" />
+                      <input type="text"name="text"  id="text" placeholder="Option A answer..." class="w-full s-text bg-transparent py-2.5 xl:py-3.5" />
                     </div>
                   </div>
                   <div class="col-span-2 md:col-span-1">

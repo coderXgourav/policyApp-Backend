@@ -11,12 +11,12 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link rel="stylesheet"
-      href="assets/fonts/line-awesome/css/line-awesome.min.css" />
-    <link rel="stylesheet" href="assets/css/nice-select2.css" />
-    <link rel="stylesheet" href="assets/css/animate.min.css" />
-    <link rel="stylesheet" href="assets/css/dropzone.min.css" />
-    <link rel="stylesheet" href="assets/css/swiper.min.css" />
-    <link rel="stylesheet" href="assets/css/quill.min.css" />
+      href="{{url('assets/fonts/line-awesome/css/line-awesome.min.css')}}" />
+    <link rel="stylesheet" href="{{url('assets/css/nice-select2.css')}}" />
+    <link rel="stylesheet" href="{{url('assets/css/animate.min.css')}}" />
+    <link rel="stylesheet" href="{{url('assets/css/dropzone.min.css')}}" />
+    <link rel="stylesheet" href="{{url('assets/css/swiper.min.css')}}" />
+    <link rel="stylesheet" href="{{url('assets/css/quill.min.css')}}" />
    
     <style>
       .submitBtnDiv{
@@ -33,7 +33,7 @@
     </style>
     <title>DashHub - Multi Component UI Web with Client and Admin
       Dashboard</title>
-    <script defer src="index.js"></script><link href="style.css"
+    <script defer src="{{url('index.js')}}"></script><link href="{{url('style.css')}}"
       rel="stylesheet"></head>
 
   <body x-cloak x-data="customizer" :class="$store.app.isDarkMode?'dark':''"
@@ -96,7 +96,7 @@
             class="border flex items-center h-[86px] justify-center grow p-6 rounded-lg"
             @click="$store.app.toggleContrast('high')"
             :class="$store.app.contrast=='high'?'border-primary-300 bg-primary-50 text-primary-300':'border-neutral-30 dark:border-neutral-500'">
-            <img src="assets/images/contrast.png" width="24"
+            <img src="{{url('assets/images/contrast.png')}}" width="24"
               class="dark:brightness-0 dark:invert" alt />
           </button>
         </div>
@@ -279,13 +279,13 @@
  
 
     <!-- js libraries and custom scripts -->
-    <script src="assets/js/libs/quill.js"></script>
-    <script src="assets/js/libs/dropzone.min.js"></script>
-    <script src="assets/js/libs/alpine.collapse.js"></script>
-    <script src="assets/js/libs/alpine.persist.js"></script>
-    <script defer src="assets/js/libs/alpine.min.js"></script>
-    <script src="assets/js/libs/nice-select2.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="{{url('assets/js/libs/quill.js')}}"></script>
+    <script src="{{url('assets/js/libs/dropzone.min.js')}}"></script>
+    <script src="{{url('assets/js/libs/alpine.collapse.js')}}"></script>
+    <script src="{{url('assets/js/libs/alpine.persist.js')}}"></script>
+    <script defer src="{{url('assets/js/libs/alpine.min.js')}}"></script>
+    <script src="{{url('assets/js/libs/nice-select2.js')}}"></script>
+    <script src="{{url('assets/js/main.js')}}"></script>
   </body>
 
   <!-- Mirrored from softivuspro.com/html/dashhub/create-job.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 12 Jun 2024 07:18:39 GMT -->

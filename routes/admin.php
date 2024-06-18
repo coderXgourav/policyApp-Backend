@@ -27,4 +27,7 @@ Route::get('/admin/add-employee',function(){
 Route::get('/admin/add-mcq',function(){
     return view('admin.dashboard.mcq.addMcq');
 });
+Route::get('/admin/set-mcq-marks',function(){
+    return view('admin.dashboard.mcq.setMcqMarks');
+});
 
