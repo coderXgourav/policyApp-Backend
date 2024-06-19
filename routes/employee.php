@@ -2,9 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/employee',function(){
-    return view('employeePanel.login');
-});
+
 Route::get('/employee/dashboard',function(){
     return view('employeePanel.dashboard.index');
+});
+Route::get('/employee/view-policy',function(){
+    return view('employeePanel.dashboard.policy.viewPolicy');
+});
+Route::get('/employee/test-mcq',function(){
+    return view('employeePanel.dashboard.mcq.mcqpage');
 });

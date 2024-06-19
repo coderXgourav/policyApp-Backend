@@ -72,28 +72,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-span-12 sm:col-span-6 xxxl:col-span-4">
-              <div class="white-box">
-                <p
-                  class="m-text mb-4 pb-4 border-b border-dashed border-primary-75 font-medium">Total
-                  Downloads</p>
-                <div class="flex justify-between gap-1">
-                  <div>
-                    <h4 class="mb-3">2.5k</h4>
-                    <div class="flex items-center gap-3">
-                      <div class="flex items-center gap-2">
-                        <span
-                          class="flex items-center justify-center size-6 rounded-full bg-primary-50 dark:bg-neutral-903 text-primary-300"><i
-                            class="las la-arrow-up"></i></span><span
-                          class="m-text font-medium">+2.6%</span>
-                      </div>
-                      <p class="max-md:hidden">than last week</p>
-                    </div>
-                  </div>
-                  <div class="product-chart"></div>
-                </div>
-              </div>
-            </div>
+          
           </div>
           <!-- Yearly Sales -->
 

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{url('assets/css/quill.min.css')}}" />
 
 
-    <title>Admin Dashboard</title>
+    <title>Dashboard</title>
     <script defer src="index.js"></script>
     <link href="{{url('style.css')}}" rel="stylesheet">
   </head>
@@ -413,7 +413,7 @@
           <ul
             class="flex flex-col gap-2 bb-dashed-n30 xl:mb-5 xl:pb-5 text-sm font-medium">
             <li>
-              <a href="{{url('/admin/dashboard')}}"
+              <a href="{{url('/employee/dashboard')}}"
                 class="flex items-center gap-2.5 hover:bg-primary-50 duration-300 rounded-lg py-2 px-3 menu-link hover:text-primary-300">
                 <i class="lab la-app-store text-xl text-primary-300"></i>
                 <span>Home</span>
@@ -438,39 +438,7 @@
     }}"
             x-init="setActiveMenu"
             class="flex flex-col gap-2 bb-dashed-n30 xl:mb-5 xl:pb-5 m-text font-medium">
-            <li class="relative">
-              <button
-                :class="opened=='user' ? 'bg-primary-50 text-primary-300' : ''"
-                @click="opened=='user' ? opened = null : opened='user'"
-                class="flex w-full items-center justify-between gap-2 hover:bg-primary-50 duration-300 rounded-lg p-2 xxl:px-3">
-                <span class="flex items-center gap-2">
-                  <i class="las la-user-alt text-xl text-primary-300"></i>
-                  <span>Employee</span>
-                </span>
-                <i
-                  :class="opened=='user' ? 'las la-minus rotate-180 text-primary-300' : 'las la-plus'"
-                  class="text-lg duration-300"></i>
-              </button>
-              <div x-show="opened=='user'" x-collapse>
-                <ul
-                  class="mt-3 ltr:ml-6 rtl:mr-6 flex-col ltr:border-l rtl:border-r group-hover:flex border-primary-300"
-                  data-submenu="user">
-                  <li>
-                    <a href="{{url('/admin/add-employee')}}"
-                      class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">Add Employee</a>
-                  </li>
-                  <li>
-                    <a href="{{url('/admin/view-employee')}}"
-                      class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">View Employee</a>
-                  </li>
-                  <li>
-                    <a href="{{url('/admin/sign-policy')}}"
-                      class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">Assign Policy</a>
-                  </li>
-
-                </ul>
-              </div>
-            </li>
+       
        
      
             <li class="relative">
@@ -491,11 +459,7 @@
                   class="mt-3 ltr:ml-6 rtl:mr-6 flex-col ltr:border-l rtl:border-r group-hover:flex border-primary-300"
                   data-submenu="invoice">
                   <li>
-                    <a href="{{url('/admin/add-policy')}}"
-                      class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">Add Policy</a>
-                  </li>
-                  <li>
-                    <a href="{{url('/admin/view-policy')}}"
+                    <a href="{{url('/employee/view-policy')}}"
                       class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">View Policy</a>
                   </li>
                 </ul>
@@ -506,17 +470,14 @@
           <button :class="opened=='blog' ? 'bg-primary-50 text-primary-300' : ''" @click="opened=='blog' ? opened = null : opened='blog'" class="flex w-full items-center justify-between gap-2 hover:bg-primary-50 duration-300 rounded-lg p-2 xxl:px-3">
             <span class="flex items-center gap-2">
               <i class="las la-newspaper text-xl text-primary-300"></i>
-              <span>MCQ</span>
+              <span>Policy Test</span>
             </span>
             <i :class="opened=='blog' ? 'las la-minus rotate-180 text-primary-300' : 'las la-plus'" class="text-lg duration-300"></i>
           </button>
           <div x-show="opened=='blog'" x-collapse>
             <ul class="mt-3 ltr:ml-6 rtl:mr-6 flex-col ltr:border-l rtl:border-r group-hover:flex border-primary-300" data-submenu="blog">
               <li>
-                <a href="{{url('/admin/add-mcq')}}" class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">Add MCQ</a>
-              </li>
-              <li>
-                <a href="{{url('/admin/add-mcq')}}" class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">View MCQ</a>
+                <a href="{{url('/employee/test-mcq')}}" class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">Test MCQ</a>
               </li>
             </ul>
           </div>
