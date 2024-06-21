@@ -17,7 +17,7 @@
             <div
               class="size-[192px] rounded-full opacity-30 blur-[100px] bg-warning-300 absolute -bottom-10 -right-10"></div>
             <div class="min-w-[60%]">
-              <h2 class="mb-3 xxl:mb-6 leading-tight">Welcome Back 👋</h2>
+              <h2 class="mb-3 xxl:mb-6 leading-tight">Welcome Mr. John </h2>
               <p class="mb-6 xl:mb-8">If you are going to use a passage of Lorem
                 Ipsum, you need to be sure there isn't anything.</p>
               <a href="#" class="btn-primary">Go Now</a>
@@ -27,53 +27,7 @@
           <!-- products slider -->
 
           <!-- statistics -->
-          <div class="col-span-12 grid grid-cols-12 gap-4 lg:gap-6">
-            <div class="col-span-12 sm:col-span-6 xxxl:col-span-4">
-              <div class="white-box">
-                <p
-                  class="m-text mb-4 pb-4 border-b border-dashed border-primary-75 font-medium">Total
-                  Active Users</p>
-                <div class="flex justify-between gap-1">
-                  <div>
-                    <h4 class="mb-3">2.5k</h4>
-                    <div class="flex items-center gap-3">
-                      <div class="flex items-center gap-2">
-                        <span
-                          class="flex items-center justify-center size-6 rounded-full bg-primary-50 dark:bg-neutral-903 text-primary-300"><i
-                            class="las la-arrow-up"></i></span><span
-                          class="m-text font-medium">+2.6%</span>
-                      </div>
-                      <p class="max-md:hidden">than last week</p>
-                    </div>
-                  </div>
-                  <div class="product-chart"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col-span-12 sm:col-span-6 xxxl:col-span-4">
-              <div class="white-box">
-                <p
-                  class="m-text mb-4 pb-4 border-b border-dashed border-primary-75 font-medium">Total
-                  Installed</p>
-                <div class="flex justify-between gap-1">
-                  <div>
-                    <h4 class="mb-3">2.5k</h4>
-                    <div class="flex items-center gap-3">
-                      <div class="flex items-center gap-2">
-                        <span
-                          class="flex items-center justify-center size-6 rounded-full bg-primary-50 dark:bg-neutral-903 text-primary-300"><i
-                            class="las la-arrow-up"></i></span><span
-                          class="m-text font-medium">+2.6%</span>
-                      </div>
-                      <p class="max-md:hidden">than last week</p>
-                    </div>
-                  </div>
-                  <div class="product-chart"></div>
-                </div>
-              </div>
-            </div>
-          
-          </div>
+    
           <!-- Yearly Sales -->
 
         </div>

@@ -284,7 +284,7 @@
               </svg>
               <span class="h4 shrink-0 max-[380px]:hidden"><span
                   class="h4">Dash</span><span
-                  class="text-neutral-700 dark:text-neutral-0 h4">Hub</span></span>
+                  class="text-neutral-700 dark:text-neutral-0 h4">board</span></span>
             </a>
 
             <button :class="$store.app.menu=='horizontal'?'xl:hidden':''"
@@ -404,7 +404,7 @@
             </svg>
             <span class="h4 shrink-0 rtl:order-1"><span
                 class="h4">Dash</span><span
-                class="text-neutral-700 dark:text-neutral-0 h4">Hub</span></span>
+                class="text-neutral-700 dark:text-neutral-0 h4">board</span></span>
           </a>
         </div>
         <div
@@ -619,7 +619,7 @@
           <span
             class="h4 duration-300 shrink-0 max-[380px]:hidden xl:hidden group-hover:block"><span
               class="h4">Dash</span><span
-              class="text-neutral-700 dark:text-neutral-0 h4">Hub</span></span>
+              class="text-neutral-700 dark:text-neutral-0 h4">board</span></span>
         </a>
       </div>
       <div
