@@ -522,6 +522,22 @@
           </div>
         </li>
         <li class="relative">
+          <button :class="opened=='group' ? 'bg-primary-50 text-primary-300' : ''" @click="opened=='group' ? opened = null : opened='group'" class="flex w-full items-center justify-between gap-2 hover:bg-primary-50 duration-300 rounded-lg p-2 xxl:px-3">
+            <span class="flex items-center gap-2">
+              <i class="las la-briefcase text-xl text-primary-300"></i>
+              <span>Create Group</span>
+            </span>
+            <i :class="opened=='group' ? 'las la-minus rotate-180 text-primary-300' : 'las la-plus'" class="text-lg duration-300"></i>
+          </button>
+          <div x-show="opened=='group'" x-collapse>
+            <ul class="mt-3 ltr:ml-6 rtl:mr-6 flex-col ltr:border-l rtl:border-r group-hover:flex border-primary-300" data-submenu="job">
+              <li>
+                <a href="{{url('#')}}" class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">Create Group</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="relative">
           <button :class="opened=='job' ? 'bg-primary-50 text-primary-300' : ''" @click="opened=='job' ? opened = null : opened='job'" class="flex w-full items-center justify-between gap-2 hover:bg-primary-50 duration-300 rounded-lg p-2 xxl:px-3">
             <span class="flex items-center gap-2">
               <i class="las la-briefcase text-xl text-primary-300"></i>
@@ -537,6 +553,8 @@
             </ul>
           </div>
         </li>
+
+       
           </ul>
          
           <ul

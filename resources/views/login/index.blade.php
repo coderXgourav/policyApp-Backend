@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link rel="stylesheet" href="{{url('assets/fonts/line-awesome/css/line-awesome.min.css')}}" />
     <link rel="stylesheet" href="{{url('assets/css/animate.min.css')}}" />
-    <title>DashHub - Multi Component UI Web with Client and Admin Dashboard</title>
+    <title>Login</title>
   <script defer src="{{url('index.js')}}"></script><link href="{{url('style.css')}}" rel="stylesheet"></head>
 
   <body x-cloak x-data="customizer" :class="$store.app.isDarkMode?'dark':''">
