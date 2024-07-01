@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 
 Route::get('/employee/dashboard',function(){
@@ -12,3 +13,6 @@ Route::get('/employee/view-policy',function(){
 Route::get('/employee/test-mcq',function(){
     return view('employeePanel.dashboard.mcq.mcqpage');
 });
+
+
+Route::post('/login',[LoginController::class,'login']);
