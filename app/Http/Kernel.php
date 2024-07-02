@@ -3,6 +3,8 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\EmployeeMiddleware;
 
 class Kernel extends HttpKernel
 {
@@ -42,6 +44,12 @@ class Kernel extends HttpKernel
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
+        'employee'=>[
+            \App\Http\Middleware\EmployeeMiddleware::class,
+        ],
+        'admin'=>[
+            \App\Http\Middleware\AdminMiddleware::class,
         ],
     ];
 

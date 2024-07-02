@@ -35,6 +35,11 @@ class="footer bg-neutral-0 dark:bg-neutral-904 text-neutral-700 dark:text-neutra
 <script src="{{url('assets/js/charts.js')}}"></script>
 <script src="{{url('assets/js/main.js')}}"></script>
 
+<script src="{{url('/projectJs/jquery.js')}}"></script>
+<script src="{{url('/projectJs/form_validation.js')}}"></script>
+<script src="{{url('/projectJs/sweetalert.js')}}"></script>
+<script src="{{url('/projectJs/form.js')}}"></script>
+
 
 
 {{-- ADMIN FOOTER  --}}

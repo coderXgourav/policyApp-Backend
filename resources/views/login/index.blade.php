@@ -1,3 +1,17 @@
+@if (session('admin'))
+  <script>
+    window.location="/admin/dashboard";
+  </script>
+
+@endif
+
+@if (session('employee'))
+  <script>
+    window.location="/employee/dashboard";
+  </script>
+
+@endif
+
 <!doctype html>
 <html dir="ltr" lang="en">
   
@@ -41,7 +55,7 @@
           <div class="col-span-12 lg:col-span-6 xxl:col-span-5">
             <h3 class="mb-4 xl:mb-6">Welcome Back!</h3>
             <p class="mb-7 xl:mb-10">Sign in to your account and join us</p>
-            <form class="" id="form">
+            <form class="" id="loginForm">
               <input type="hidden" id="url" value="/login">
               <input type="hidden" id="method" value="POST">
               <input type="hidden" id="btnName" value="Login">

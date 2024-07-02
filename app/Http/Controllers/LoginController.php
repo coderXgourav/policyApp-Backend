@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AdminModel;
 use App\Models\EmployeeModel;
-use session; 
+use Session; 
 
 
 class LoginController extends Controller

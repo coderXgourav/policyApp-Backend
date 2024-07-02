@@ -21,6 +21,13 @@
     <title>Admin Dashboard</title>
     <script defer src="index.js"></script>
     <link href="{{url('style.css')}}" rel="stylesheet">
+  <style>
+    .error{
+      color: red;
+      padding-left: 5px;
+    }
+  </style>
+
   </head>
 
   <body x-cloak x-data="customizer" :class="$store.app.isDarkMode?'dark':''"
@@ -327,8 +334,8 @@
                   class="flex flex-col items-center border-b border-neutral-30 p-3 text-center dark:border-neutral-500 lg:p-4">
                   <img src="{{url('assets/images/users/user-s-4.png')}}" width="60"
                     height="60" class="rounded-full" alt="profile img" />
-                  <h6 class="h6 mt-2">John Doe</h6>
-                  <span class="text-sm">john@admin.com</span>
+                  <h6 class="h6 mt-2">{{$admin->admin_name}}</h6>
+                  <span class="text-sm">{{$admin->admin_email}}</span>
                 </div>
                 <ul class="flex w-[250px] flex-col p-4">
                   <li>
@@ -341,7 +348,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#"
+                    <a href="{{url('/admin/logout')}}"
                       class="flex items-center gap-2 rounded-md px-2 py-1.5 duration-300 hover:bg-primary-300/10 hover:text-primary-300">
                       <span>
                         <i class="las la-sign-out-alt mt-0.5 text-xl"></i>
