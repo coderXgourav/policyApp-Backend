@@ -11,7 +11,16 @@ class EmployeeController extends Controller
 {
     //
 
+    //    getAdminDetails 
+  public function adminDetails()
+  {
+    $admin_id = session('admin');
+    $admin_data = AdminModel::find($admin_id);
+    return $admin_data;
+  }
+
         // swal
+
         public function swal($status,$title,$icon){
             $response = [
                 'status'=>$status,
@@ -21,11 +30,11 @@ class EmployeeController extends Controller
             echo json_encode($response);
           }
 
-    public function adminDetails()
+    public function employeeDetails()
     {
-      $admin_id = session('admin');
-      $admin_data = AdminModel::find($admin_id);
-      return $admin_data;
+      $employee_id = session('employee');
+      $employee_data = EmployeeModel::find($employee_id);
+      return $employee_data;
     }
 
         // addEmployeePage 
@@ -71,8 +80,25 @@ class EmployeeController extends Controller
         public function viewEmployee()
         {
             $admin_data = self::adminDetails();
+            $employees = EmployeeModel::all();
 
-            return view('admin.dashboard.employee.viewEmployee',['admin'=>$admin_data]);
+            return view('admin.dashboard.employee.viewEmployee',['admin'=>$admin_data,'employees'=>$employees]);
+        }
+
+
+        // employeeDashboard
+        public function employeeDashboard()
+        {
+            $employee_details = self::employeeDetails();
+            return view('employeePanel.dashboard.index',['employee'=>$employee_details]);
+        }
+
+        // employeeLogout
+
+        public function employeeLogout(Request $request)
+        {
+            $request->session()->forget('employee');
+            return redirect('/login');
         }
 
         // END CLASS 

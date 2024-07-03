@@ -17,7 +17,7 @@
             <div
               class="size-[192px] rounded-full opacity-30 blur-[100px] bg-warning-300 absolute -bottom-10 -right-10"></div>
             <div class="min-w-[60%]">
-              <h2 class="mb-3 xxl:mb-6 leading-tight">Welcome Mr. John </h2>
+              <h2 class="mb-3 xxl:mb-6 leading-tight">Welcome {{$employee->employee_name}} </h2>
               <p class="mb-6 xl:mb-8">If you are going to use a passage of Lorem
                 Ipsum, you need to be sure there isn't anything.</p>
               <a href="#" class="btn-primary">Go Now</a>

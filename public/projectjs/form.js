@@ -25,9 +25,10 @@ $("#loginForm").validate({
                     icon: data.icon,
                     title: data.title,
                 });
+
                 if (data.status) {
                     setTimeout(() => {
-                        window.location = "admin/dashboard";
+                        window.location = "/admin/dashboard";
                     }, 2000);
                 }
             },

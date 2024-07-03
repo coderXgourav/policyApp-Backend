@@ -567,7 +567,7 @@
           <ul
             class="flex flex-col gap-2 bb-dashed-n30 xl:mb-5 xl:pb-5 m-text font-medium">
             <li>
-              <a href="#"
+              <a href="{{url('/admin/logout')}}"
                 class="flex items-center gap-2.5 hover:bg-primary-50 duration-300 rounded-lg py-2 px-3 menu-link hover:text-primary-300">
                 <i class="las la-sign-out-alt mt-0.5 text-xl"></i>
                 <span>Logout</span>

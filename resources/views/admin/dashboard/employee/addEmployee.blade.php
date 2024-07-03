@@ -12,8 +12,8 @@
 
     .selectForm option{
         color: black;
-
     }
+
 </style>
     <!-- Main Content -->
     <main
@@ -27,7 +27,7 @@
     
       <div :class="[$store.app.menu=='horizontal' ? 'max-w-[1704px] mx-auto xxl:px-0 xxl:pt-8':'',$store.app.stretch?'xxxl:max-w-[92%] mx-auto':'']" class="p-3 md:p-4 xxl:p-6">
         <div class="white-box">
-          <h4 class="bb-dashed-n30">Create a new employee</h4>
+          <h4 class="bb-dashed-n30">Add a new employee</h4>
           <div class="grid grid-cols-12 gap-4 xxl:gap-6">
            
             <div class="col-span-12 lg:col-span-10">

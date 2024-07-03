@@ -327,8 +327,8 @@
                   class="flex flex-col items-center border-b border-neutral-30 p-3 text-center dark:border-neutral-500 lg:p-4">
                   <img src="{{url('assets/images/users/user-s-4.png')}}" width="60"
                     height="60" class="rounded-full" alt="profile img" />
-                  <h6 class="h6 mt-2">William James</h6>
-                  <span class="text-sm">james@mail.com</span>
+                  <h6 class="h6 mt-2">{{$employee->employee_name}}</h6>
+                  <span class="text-sm">{{$employee->employee_email}}</span>
                 </div>
                 <ul class="flex w-[250px] flex-col p-4">
                   <li>
@@ -341,7 +341,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#"
+                    <a href="{{url('/employee/logout')}}"
                       class="flex items-center gap-2 rounded-md px-2 py-1.5 duration-300 hover:bg-primary-300/10 hover:text-primary-300">
                       <span>
                         <i class="las la-sign-out-alt mt-0.5 text-xl"></i>
@@ -487,7 +487,7 @@
           <ul
             class="flex flex-col gap-2 bb-dashed-n30 xl:mb-5 xl:pb-5 m-text font-medium">
             <li>
-              <a href="#"
+              <a href="{{url('/employee/logout')}}"
                 class="flex items-center gap-2.5 hover:bg-primary-50 duration-300 rounded-lg py-2 px-3 menu-link hover:text-primary-300">
                 <i class="las la-sign-out-alt mt-0.5 text-xl"></i>
                 <span>Logout</span>
