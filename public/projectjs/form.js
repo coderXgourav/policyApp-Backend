@@ -66,7 +66,16 @@ $("#form").validate({
                     icon: data.icon,
                     title: data.title,
                 });
+                if(data.status){
+                $('#form').trigger('reset');
+                }
             },
+            error:function(){
+                swal({
+                    icon: "error",
+                    title: "Technical Issue.!",
+                });
+            }
         });
     },
 });

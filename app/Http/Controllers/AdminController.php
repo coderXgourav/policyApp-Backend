@@ -36,12 +36,6 @@ class AdminController extends Controller
         return redirect('/login');
     }
 
-    // addEmployeePage 
-    public function addEmployeePage()
-    {
-        $admin_data = self::adminDetails();
-        return view('admin.dashboard.employee.addEmployee',['admin'=>$admin_data]);
-    }
 
 
     // END OF CLASS 

@@ -21,8 +21,9 @@
       class="w-full text-neutral-700 min-h-screen dark:text-neutral-20 pt-[60px] md:pt-[66px] duration-300"
     >
     <form id="form">
-      <input type="hidden">
-
+      <input type="hidden" id="url" value="/admin/add-employee">
+      <input type="hidden" id="method" value="POST">
+      {{@csrf_field()}}
     
       <div :class="[$store.app.menu=='horizontal' ? 'max-w-[1704px] mx-auto xxl:px-0 xxl:pt-8':'',$store.app.stretch?'xxxl:max-w-[92%] mx-auto':'']" class="p-3 md:p-4 xxl:p-6">
         <div class="white-box">
@@ -50,25 +51,7 @@
                       <input type="number" name="number" id="number" placeholder="Enter Number..." class="w-full s-text bg-transparent py-2.5 xl:py-3.5" required />
                     </div>
                   </div>
-                  <div class="col-span-2 md:col-span-1">
-                    <div class="relative flex items-center gap-4 rounded-xl border border-neutral-40 w-full px-4 dark:border-neutral-500 lg:px-6">
-                      <label for="state" class="absolute -top-2 bg-neutral-20 px-2 text-xs dark:bg-neutral-903">State/Region</label>
-                      <input type="text" name="state" id="state" placeholder="Enter state..." class="w-full s-text bg-transparent py-2.5 xl:py-3.5" required />
-                    </div>
-                  </div>
-                  <div class="col-span-2 md:col-span-1">
-                    <div class="relative flex items-center gap-4 rounded-xl border border-neutral-40 w-full px-4 dark:border-neutral-500 lg:px-6">
-                      <label for="city" class="absolute -top-2 bg-neutral-20 px-2 text-xs dark:bg-neutral-903">City</label>
-                      <input type="text" name="city" id="city" placeholder="Enter City..." class="w-full s-text bg-transparent py-2.5 xl:py-3.5" required />
-                    </div>
-                  </div>
-                  
-                  <div class="col-span-2 md:col-span-1">
-                    <div class="relative flex items-center gap-4 rounded-xl border border-neutral-40 w-full px-4 dark:border-neutral-500 lg:px-6">
-                      <label for="zip" class="absolute -top-2 bg-neutral-20 px-2 text-xs dark:bg-neutral-903">Zip Code</label>
-                      <input type="text" id="zip" name="zip" placeholder="Enter Zip..." class="w-full s-text bg-transparent py-2.5 xl:py-3.5" required />
-                    </div>
-                  </div>
+            
                   <div class="col-span-2 md:col-span-1">
                     <div class="relative flex items-center gap-4 rounded-xl border border-neutral-40 w-full px-4 dark:border-neutral-500 lg:px-6">
                       <label for="city" class="absolute -top-2 bg-neutral-20 px-2 text-xs dark:bg-neutral-903">Password</label>

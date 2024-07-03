@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('employee_name');
             $table->string('employee_email');
             $table->string('employee_number');
-            $table->string('employee_state');
-            $table->string('employee_city');
-            $table->string('employee_zip');
+            // $table->string('employee_state');
+            // $table->string('employee_city');
+            // $table->string('employee_zip');
             $table->string('employee_password');
             $table->string('employee_type');
             $table->string('employee_policy_status')->default(0);

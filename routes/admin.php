@@ -2,14 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EmployeeController;
+
 
 Route::get('/login',function(){
     return view('login.index');
 });
 
-Route::get('/admin/view-employee',function(){
-    return view('admin.dashboard.employee.viewEmployee');
-});
+
 Route::get('/admin/sign-policy',function(){
     return view('admin.dashboard.employee.signPolicy');
 });
@@ -31,6 +31,9 @@ Route::group(['middleware'=>'admin'],function(){
 
     Route::get('/admin/dashboard',[AdminController::class,'adminDashboard']);
     Route::get('/admin/logout',[AdminController::class,'adminLogout']);
-    Route::get('/admin/add-employee',[AdminController::class,'addEmployeePage']);
+    Route::get('/admin/add-employee',[EmployeeController::class,'addEmployeePage']);
+    Route::post('/admin/add-employee',[EmployeeController::class,'addEmployee']);
+    Route::get('/admin/view-employee',[EmployeeController::class,'viewEmployee']);
+
 
 });
