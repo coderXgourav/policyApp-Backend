@@ -334,8 +334,8 @@
                   class="flex flex-col items-center border-b border-neutral-30 p-3 text-center dark:border-neutral-500 lg:p-4">
                   <img src="{{url('assets/images/users/user-s-4.png')}}" width="60"
                     height="60" class="rounded-full" alt="profile img" />
-                  <h6 class="h6 mt-2">{{$admin->admin_name}}</h6>
-                  <span class="text-sm">{{$admin->admin_email}}</span>
+                  <h6 class="h6 mt-2">Admin</h6>
+                  <span class="text-sm">admin@gmail.com</span>
                 </div>
                 <ul class="flex w-[250px] flex-col p-4">
                   <li>

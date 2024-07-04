@@ -9,8 +9,8 @@
         <div x-data="{activeTab:'list'}" class="white-box">
           <div class="flex justify-between items-center bb-dashed-n30">
             <h4>Policy Lists</h4>
-            <button class="btn-primary-outlined"><i class="las la-upload"></i>
-              Upload</button>
+            <a href="{{url('/admin/add-policy')}}"><button class="btn-primary-outlined"><i class="las la-upload"></i>
+              Upload New Policy</button></a>
           </div>
 
           <div
@@ -64,11 +64,7 @@
                         </label>
                       </th>
                       <th class="px-6 duration-300"
-                        :class="dense? 'py-2': 'py-3 lg:py-5'">Name</th>
-                      <th class="px-6 duration-300"
                         :class="dense? 'py-2': 'py-3 lg:py-5'">Title</th>
-                      <th class="px-6 duration-300"
-                        :class="dense? 'py-2': 'py-3 lg:py-5'">Type</th>
                       <th class="px-6 duration-300"
                         :class="dense? 'py-2': 'py-3 lg:py-5'">Modified</th>
                         <th class="px-6 duration-300"
@@ -76,66 +72,53 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <template x-for="file in items">
+                    {{-- <template x-for="file in items"> --}}
+                      @php
+                          $no =1;
+                      @endphp
+                      @if(count($policy)>0)
+                      @foreach($policy as $value)
                       <tr
-                        class="border-b border-neutral-30 duration-300 hover:bg-neutral-20 dark:border-neutral-500 dark:hover:bg-neutral-903"
-                        :class="file.checked?'!bg-primary-300/10':'bg-neutral-0 dark:bg-neutral-904'">
-                        <td class="px-6 w-[72px]"
-                          :class="dense? 'py-1.5': 'py-3'">
-                          <label for="">1</label>
-                        </td>
-                        <td class="px-6" :class="dense? 'py-1.5': 'py-3'"
-                          @click="openCustomizer">
-                          <div class="flex items-center gap-3">
-                            <i x-show="file.type!='folder'" :class="file.icon"
-                              class="text-2xl"></i>
-                            <img x-show="file.type=='folder'"
-                              src="{{url('assets/images/folder.png')}}" width="24"
-                              height="24" alt />
-                            <p class="m-text font-medium"
-                              x-text="file.title"></p>
-                          </div>
-                        </td>
-                        <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
-                          <span class="m-text" x-text="file.size"></span>
-                        </td>
-                        <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
-                          <span class="m-text" x-text="file.type"></span>
-                        </td>
-                        <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
-                          <div>
-                            <p class="m-text font-medium mb-1"
-                              x-text="file.date"></p>
-                            <span class="text-xs" x-text="file.time"></span>
-                          </div>
-                        </td>
-                        <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
-                         <button class="btn btn-success">Edit</button>
-                         <button class="btn btn-danger">Delete</button>
-                        </td>
-                       
-           
-                      </tr>
-                    </template>
+                      class="border-b border-neutral-30 duration-300 hover:bg-neutral-20 dark:border-neutral-500 dark:hover:bg-neutral-903"
+                      :class="file.checked?'!bg-primary-300/10':'bg-neutral-0 dark:bg-neutral-904'">
+                      <td class="px-6 w-[72px]"
+                        :class="dense? 'py-1.5': 'py-3'">
+                        <label for="">{{$no++}}</label>
+                      </td>
+                      <td class="px-6" :class="dense? 'py-1.5': 'py-3'"
+                        @click="openCustomizer">
+                        <div class="flex items-center gap-3">
+                          <i  :class="file.icon"
+                            class="text-2xl"></i>
+                          <img  
+                            src="{{url('assets/images/folder.png')}}" width="24"
+                            height="24" alt />
+                            <span>{{$value->policy_title}}</span>
+                        </div>
+                      </td>
+                      <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
+                        <span class="m-text" >{{date_format($value->created_at,'d-M-Y')}}</span>
+                      </td>
+                     
+                      <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
+                       <a href="{{url('/admin/view-policy')}}/{{$value->policy_id}}"><button class="btn btn-warning">View Policy</button></a>
+                       <button class="btn btn-success">Edit</button>
+                       <button class="btn btn-danger">Delete</button>
+                      </td>
+                     
+         
+                    </tr>
+                      @endforeach
+      @else 
+      <tr>
+        <td colspan="4"> Empty Policy Files.</td>
+      </tr>
+                      @endif 
+                  
+
+                    {{-- </template> --}}
                   </tbody>
                 </table>
-                <div
-                  class="mt-6 flex items-center gap-5 justify-center flex-col md:flex-row md:justify-between whitespace-nowrap">
-                  <label for="switch" class="switch flex">
-                  
-                  </label>
-                  <div
-                    class="flex flex-col sm:flex-row justify-center sm:justify-between gap-5">
-                    
-                    <div class="flex items-center justify-center gap-4">
-                      <p>1-10 of 100</p>
-                      <button><i
-                          class="las la-angle-left text-xl rtl:rotate-180"></i></button>
-                      <button><i
-                          class="las la-angle-right text-xl rtl:rotate-180"></i></button>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 

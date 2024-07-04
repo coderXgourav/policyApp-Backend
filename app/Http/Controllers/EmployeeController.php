@@ -40,8 +40,9 @@ class EmployeeController extends Controller
         // addEmployeePage 
         public function addEmployeePage()
         {
-            $admin_data = self::adminDetails();
-            return view('admin.dashboard.employee.addEmployee',['admin'=>$admin_data]);
+            // $admin_data = self::adminDetails();
+            // return view('admin.dashboard.employee.addEmployee',['admin'=>$admin_data]);
+            return view('admin.dashboard.employee.addEmployee');
         }
     
         // addEmployee 
@@ -79,18 +80,21 @@ class EmployeeController extends Controller
         // viewEmployee 
         public function viewEmployee()
         {
-            $admin_data = self::adminDetails();
+            // $admin_data = self::adminDetails();
             $employees = EmployeeModel::all();
 
-            return view('admin.dashboard.employee.viewEmployee',['admin'=>$admin_data,'employees'=>$employees]);
+            // return view('admin.dashboard.employee.viewEmployee',['admin'=>$admin_data,'employees'=>$employees]);
+            
+            return view('admin.dashboard.employee.viewEmployee',['employees'=>$employees]);
         }
 
 
         // employeeDashboard
         public function employeeDashboard()
         {
-            $employee_details = self::employeeDetails();
-            return view('employeePanel.dashboard.index',['employee'=>$employee_details]);
+            // $employee_details = self::employeeDetails();
+            // return view('employeePanel.dashboard.index',['employee'=>$employee_details]);
+            return view('employeePanel.dashboard.index');
         }
 
         // employeeLogout

@@ -33,8 +33,9 @@ class PolicyController extends Controller
   public function addPolicyPage()
   {
 
-    $admin_data = self::adminDetails();
-    return view('admin.dashboard.policy.addPolicy',['admin'=>$admin_data]);
+    // $admin_data = self::adminDetails();
+    // return view('admin.dashboard.policy.addPolicy',['admin'=>$admin_data]);
+    return view('admin.dashboard.policy.addPolicy');
 
   }
 
@@ -57,12 +58,29 @@ class PolicyController extends Controller
         $policyData->policy_file = $file_name;
         $policyData->save();
         return self::swal(true,'Successfull' ,'success');
+    }
 
+    // viewPolicyPage 
+    public function viewPolicyPage()
+    {
+        // $admin_data = self::adminDetails();
+        $policy_files = PolicyModel::orderBy('policy_id','DESC')->get();
+        // return view('admin.dashboard.policy.viewPolicy',['admin'=>$admin_data,'policy'=>$policy_files]);
+        return view('admin.dashboard.policy.viewPolicy',['policy'=>$policy_files]);
+    }
+
+    // viewPolicy
+    public function viewPolicy($id)
+    {
+        // $admin_data = self::adminDetails();
+        $policy = PolicyModel::find($id);
        
-
-
+        // return view('admin.dashboard.policy.show_policy',['admin'=>$admin_data,'policy'=>$policy]);
+        return view('admin.dashboard.policy.show_policy',['policy'=>$policy]);
 
     }
+ 
+
 
 
 }

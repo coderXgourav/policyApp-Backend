@@ -12,6 +12,7 @@
             <form  id="form" class="single-file">
               <input type="hidden" id="url" value="/admin/add-policy">
               <input type="hidden" id="method" value="POST">
+              <input type="hidden" id="btnName" value="Upload Policy">
               {{@csrf_field()}}
             <div>
               <div class="form-input mb-4 xl:mb-6">
@@ -32,7 +33,7 @@
               
               <br>
             <div class="col-span-2 flex gap-4">
-              <button type="submit" class="btn-primary">Upload Policy </button>
+              <button type="submit" id="btn" class="btn-primary">Upload Policy </button>
             </div>
           </form>
 

@@ -23,6 +23,7 @@
     <form id="form">
       <input type="hidden" id="url" value="/admin/add-employee">
       <input type="hidden" id="method" value="POST">
+      <input type="hidden" id="btnName" value="Add Employee">
       {{@csrf_field()}}
     
       <div :class="[$store.app.menu=='horizontal' ? 'max-w-[1704px] mx-auto xxl:px-0 xxl:pt-8':'',$store.app.stretch?'xxxl:max-w-[92%] mx-auto':'']" class="p-3 md:p-4 xxl:p-6">
@@ -81,7 +82,7 @@
       
                 </div>
                 <div class="flex gap-4 xxl:gap-6">
-                  <button class="btn-primary">Add Employee</button>
+                  <button class="btn-primary" id="btn">Add Employee</button>
                 </div>
               </div>
             </div>

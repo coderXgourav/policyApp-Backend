@@ -16,9 +16,7 @@ Route::get('/admin/sign-policy',function(){
     return view('admin.dashboard.employee.signPolicy');
 });
 
-Route::get('/admin/view-policy',function(){
-    return view('admin.dashboard.policy.viewPolicy');
-});
+
 
 Route::get('/admin/add-mcq',function(){
     return view('admin.dashboard.mcq.addMcq');
@@ -40,5 +38,7 @@ Route::group(['middleware'=>'admin'],function(){
     // POLICY ROUTES 
     Route::get('/admin/add-policy',[PolicyController::class,'addPolicyPage']);
     Route::post('/admin/add-policy',[PolicyController::class,'addPolicy']);
-
+    Route::get('/admin/view-policy',[PolicyController::class,'viewPolicyPage']);
+    Route::get('/admin/view-policy/{id}',[PolicyController::class,'viewPolicy']);
+    
 });
