@@ -337,7 +337,7 @@
                   <h6 class="h6 mt-2">Admin</h6>
                   <span class="text-sm">admin@gmail.com</span>
                 </div>
-                <ul class="flex w-[250px] flex-col p-4">
+                <ul class="flex w-[2 50px] flex-col p-4">
                   <li>
                     <a href="#"
                       class="flex items-center gap-2 rounded-md px-2 py-1.5 duration-300 hover:bg-primary-300/10 hover:text-primary-300">
