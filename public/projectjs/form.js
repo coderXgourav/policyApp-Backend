@@ -12,6 +12,7 @@ $("#loginForm").validate({
             type: method,
             data: new FormData(form),
             dataType: "JSON",
+            enctype:"multipart/form-data",
             processData: false,
             contentType: false,
             beforeSend: function (data) {

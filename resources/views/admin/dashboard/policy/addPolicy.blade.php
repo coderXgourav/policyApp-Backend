@@ -9,27 +9,33 @@
         <div class="white-box">
           <h4 class="bb-dashed-n30">Create a new Policy</h4>
           <div class="flex flex-col gap-4 xxl:gap-6">
+            <form  id="form" class="single-file">
+              <input type="hidden" id="url" value="/admin/add-policy">
+              <input type="hidden" id="method" value="POST">
+              {{@csrf_field()}}
             <div>
               <div class="form-input mb-4 xl:mb-6">
-                <input type="text" id="post_name" placeholder="Name" />
-                <label for="post_name">Job Title</label>
+                <input type="text" name="policy_title" id="post_name" placeholder="Policy Title" required/>
+                <label for="post_name">Policy Title</label>
               </div>
               <p class="l-text font-medium mb-4">Policy File</p>
-              <form action="#" id="single-file" class="single-file">
-                <div class="flex flex-col items-center text-center clickable-single cursor-pointer n20-box lg:p-10 xl:p-[60px]">
+              <input type="file" name="policy_file" required style="    width: 100%;
+    border: 1px solid #434956;
+    padding: 15px;
+    border-radius: 12px;">
+                {{-- <div class="flex flex-col items-center text-center clickable-single cursor-pointer n20-box lg:p-10 xl:p-[60px]">
                   <img src="{{url('assets/images/single-file.png')}}" class="mb-6 lg:mb-10" alt="" />
                   <h5 class="font-semibold mb-4">Drop or Select file</h5>
                   <p>Drop files here or click <span class="text-primary-300">Browse</span> through your machine</p>
-                </div>
-              </form>
-            </div>
-
-         
-
+                </div> --}}
+              </div> 
+              
+              <br>
             <div class="col-span-2 flex gap-4">
-              <button class="btn-primary">Upload Policy </button>
-              <button class="btn-primary-outlined">Cancel</button>
+              <button type="submit" class="btn-primary">Upload Policy </button>
             </div>
+          </form>
+
           </div>
         </div>
       </div>
