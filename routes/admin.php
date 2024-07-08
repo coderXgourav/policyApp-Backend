@@ -43,6 +43,8 @@ Route::group(['middleware'=>'admin'],function(){
     // MCQ ROUTES 
      Route::get('/admin/add-mcq',[McqController::class,'addMcqPage']);
      Route::post('/admin/add-mcq',[McqController::class,'addMcq']);
+     Route::get('/admin/view-mcq',[McqController::class,'viewMcq']);
+     Route::get('/admin/show-question/{id}',[McqController::class,'showMcq']);
     
 
     

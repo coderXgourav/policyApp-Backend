@@ -524,7 +524,7 @@
                 <a href="{{url('/admin/add-mcq')}}" class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">Add MCQ</a>
               </li>
               <li>
-                <a href="{{url('/admin/add-mcq')}}" class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">View MCQ</a>
+                <a href="{{url('/admin/view-mcq')}}" class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">View MCQ</a>
               </li>
             </ul>
           </div>
