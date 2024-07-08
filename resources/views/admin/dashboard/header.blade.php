@@ -2,6 +2,7 @@
 <html dir="ltr" lang="en">
 
   <!-- Mirrored from softivuspro.com/html/dashhub/# by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 12 Jun 2024 07:15:58 GMT -->
+  
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -334,8 +335,8 @@
                   class="flex flex-col items-center border-b border-neutral-30 p-3 text-center dark:border-neutral-500 lg:p-4">
                   <img src="{{url('assets/images/users/user-s-4.png')}}" width="60"
                     height="60" class="rounded-full" alt="profile img" />
-                  <h6 class="h6 mt-2">Admin</h6>
-                  <span class="text-sm">admin@gmail.com</span>
+                  <h6 class="h6 mt-2">{{$admin->admin_name}}</h6>
+                  <span class="text-sm">{{$admin->admin_email}}</span>
                 </div>
                 <ul class="flex w-[2 50px] flex-col p-4">
                   <li>

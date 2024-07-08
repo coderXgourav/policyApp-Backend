@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PolicyController;
+use App\Http\Controllers\McqController;
 
 
 
@@ -18,9 +19,7 @@ Route::get('/admin/sign-policy',function(){
 
 
 
-Route::get('/admin/add-mcq',function(){
-    return view('admin.dashboard.mcq.addMcq');
-});
+
 Route::get('/admin/set-mcq-marks',function(){
     return view('admin.dashboard.mcq.setMcqMarks');
 });
@@ -40,5 +39,11 @@ Route::group(['middleware'=>'admin'],function(){
     Route::post('/admin/add-policy',[PolicyController::class,'addPolicy']);
     Route::get('/admin/view-policy',[PolicyController::class,'viewPolicyPage']);
     Route::get('/admin/view-policy/{id}',[PolicyController::class,'viewPolicy']);
+
+    // MCQ ROUTES 
+     Route::get('/admin/add-mcq',[McqController::class,'addMcqPage']);
+     Route::post('/admin/add-mcq',[McqController::class,'addMcq']);
+    
+
     
 });
