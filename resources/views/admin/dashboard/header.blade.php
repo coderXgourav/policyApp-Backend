@@ -556,7 +556,10 @@
           <div x-show="opened=='job'" x-collapse>
             <ul class="mt-3 ltr:ml-6 rtl:mr-6 flex-col ltr:border-l rtl:border-r group-hover:flex border-primary-300" data-submenu="job">
               <li>
-                <a href="{{url('/admin/set-mcq-marks')}}" class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">Set marks</a>
+                <a href="{{url('/admin/set-mcq-marks')}}" class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">Set Marks</a>
+              </li>
+              <li>
+                <a href="{{url('/admin/view-mcq-marks')}}" class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">View Passing marks</a>
               </li>
             </ul>
           </div>

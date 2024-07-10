@@ -115,7 +115,12 @@ class McqController extends Controller
     // setPassMark
     public function setPassMark(Request $request)
     {
-        
+        $check = PolicyModel::find($request->policy);
+     
+        if($check->pass_mark_status>0){
+            return self::swal(false,'Already Marks set','warning');
+        }
+
         $passMark = new PassMarkModel;
         $passMark->policy_main_id = $request->policy;
         $passMark->pass_mark = $request->pass_marrk;
@@ -134,6 +139,17 @@ class McqController extends Controller
     {
         $questionNo = McqModel::where('main_policy_id',$request->id)->count();
         return json_encode(['question_no'=>$questionNo]); 
+
+    }
+
+    // viewSetMarks
+    public function viewSetMarks()
+    {
+      $admin_data = self::adminDetails();
+      $setMarks = DB::table('pass_mark')
+      ->join('policy','policy.policy_id','=','pass_mark.policy_main_id')
+      ->get();
+      return view('admin.dashboard.mcq.viewSetMarks',['admin'=>$admin_data,'marks'=>$setMarks]);
 
     }
 

@@ -49,6 +49,7 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin/set-mcq-marks',[McqController::class,'setMarks']);
     Route::post('/admin/set-marks',[McqController::class,'setPassMark']);
     Route::get('/admin/fetch-no-of-question',[McqController::class,'showNumberOfQuestion']);
+    Route::get('/admin/view-mcq-marks',[McqController::class,'viewSetMarks']);
     
 // Route::get('/admin/set-mcq-marks',function(){
 //     return view('admin.dashboard.mcq.setMcqMarks');
