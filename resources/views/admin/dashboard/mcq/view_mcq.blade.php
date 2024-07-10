@@ -102,7 +102,7 @@
                       @endforeach
       @else 
       <tr>
-        <td colspan="4"> Empty Policy Files.</td>
+        <td colspan="4" class="text-center mt-4 text-danger"> Empty MCQ </td>
       </tr>
                       @endif 
                     {{-- </template> --}}

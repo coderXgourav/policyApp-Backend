@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('policy', function (Blueprint $table) {
-            $table->id('policy_id');
-            $table->text('policy_title');
-            $table->text('policy_file');
-            $table->integer('pass_mark_status')->default(0);
+        Schema::create('pass_mark', function (Blueprint $table) {
+            $table->id('pass_mark_id');
+            $table->string('policy_main_id');
+            $table->integer('pass_mark');
+            $table->integer('mark_status')->default(0);
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('policy');
+        Schema::dropIfExists('pass_mark');
     }
 };

@@ -20,9 +20,6 @@ Route::get('/admin/sign-policy',function(){
 
 
 
-Route::get('/admin/set-mcq-marks',function(){
-    return view('admin.dashboard.mcq.setMcqMarks');
-});
 
 Route::group(['middleware'=>'admin'],function(){
 
@@ -45,6 +42,17 @@ Route::group(['middleware'=>'admin'],function(){
      Route::post('/admin/add-mcq',[McqController::class,'addMcq']);
      Route::get('/admin/view-mcq',[McqController::class,'viewMcq']);
      Route::get('/admin/show-question/{id}',[McqController::class,'showMcq']);
+
+
+    // MARKS ROUTE 
+
+    Route::get('/admin/set-mcq-marks',[McqController::class,'setMarks']);
+    Route::post('/admin/set-marks',[McqController::class,'setPassMark']);
+    Route::get('/admin/fetch-no-of-question',[McqController::class,'showNumberOfQuestion']);
+    
+// Route::get('/admin/set-mcq-marks',function(){
+//     return view('admin.dashboard.mcq.setMcqMarks');
+// });
     
 
     

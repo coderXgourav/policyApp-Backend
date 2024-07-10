@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AdminModel;
 use App\Models\PolicyModel;
-use App\Models\McqModel;
+use App\Models\McqModel; 
+use App\Models\PassMarkModel;
+
 use DB;
 
 class McqController extends Controller
@@ -96,6 +98,43 @@ class McqController extends Controller
         $question = McqModel::where('main_policy_id',$id)->get();
         return view('admin.dashboard.mcq.show_mcq',['admin'=>$admin_data,'question'=>$question]);
          
+    }
+
+    // setMarks
+    public function setMarks()
+    {
+    
+      $admin_data = self::adminDetails();
+
+      $policy = PolicyModel::where('pass_mark_status',0)->orderBy('policy_id','DESC')->get();
+
+
+      return view('admin.dashboard.mcq.setMcqMarks',['admin'=>$admin_data,'policy'=>$policy]);
+    }
+
+    // setPassMark
+    public function setPassMark(Request $request)
+    {
+        
+        $passMark = new PassMarkModel;
+        $passMark->policy_main_id = $request->policy;
+        $passMark->pass_mark = $request->pass_marrk;
+        
+        $passMark->save();
+
+        $policyStatusUpdate = PolicyModel::find($request->policy);
+        $policyStatusUpdate->pass_mark_status = 1;
+        $policyStatusUpdate->save();
+         
+        return self::swal(true,'Successfull','success');
+    }
+
+    // showNumberOfQuestion
+    public function showNumberOfQuestion(Request $request)
+    {
+        $questionNo = McqModel::where('main_policy_id',$request->id)->count();
+        return json_encode(['question_no'=>$questionNo]); 
+
     }
 
 
