@@ -9,6 +9,7 @@ use Session;
 class AdminController extends Controller
 {
 
+  
 //    getAdminDetails 
   public function adminDetails()
   {

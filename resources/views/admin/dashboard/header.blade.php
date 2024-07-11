@@ -448,6 +448,34 @@
             class="flex flex-col gap-2 bb-dashed-n30 xl:mb-5 xl:pb-5 m-text font-medium">
             <li class="relative">
               <button
+                :class="opened=='department' ? 'bg-primary-50 text-primary-300' : ''"
+                @click="opened=='department' ? opened = null : opened='department'"
+                class="flex w-full items-center justify-between gap-2 hover:bg-primary-50 duration-300 rounded-lg p-2 xxl:px-3">
+                <span class="flex items-center gap-2">
+                  <i class="las la-user-alt text-xl text-primary-300"></i>
+                  <span>Department</span>
+                </span>
+                <i
+                  :class="opened=='department' ? 'las la-minus rotate-180 text-primary-300' : 'las la-plus'"
+                  class="text-lg duration-300"></i>
+              </button>
+              <div x-show="opened=='department'" x-collapse>
+                <ul
+                  class="mt-3 ltr:ml-6 rtl:mr-6 flex-col ltr:border-l rtl:border-r group-hover:flex border-primary-300"
+                  data-submenu="department">
+                  <li>
+                    <a href="{{url('/admin/add-department')}}"
+                      class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">Add Department</a>
+                  </li>
+                  <li>
+                    <a href="{{url('/admin/view-department')}}"
+                      class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">View Department</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="relative">
+              <button
                 :class="opened=='user' ? 'bg-primary-50 text-primary-300' : ''"
                 @click="opened=='user' ? opened = null : opened='user'"
                 class="flex w-full items-center justify-between gap-2 hover:bg-primary-50 duration-300 rounded-lg p-2 xxl:px-3">

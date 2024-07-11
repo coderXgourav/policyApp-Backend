@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AdminModel; 
 use App\Models\EmployeeModel; 
+use App\Models\DepartmentModel; 
 use Session; 
+use DB;
 
 class EmployeeController extends Controller
 {
@@ -41,7 +43,8 @@ class EmployeeController extends Controller
         public function addEmployeePage()
         {
             $admin_data = self::adminDetails();
-            return view('admin.dashboard.employee.addEmployee',['admin'=>$admin_data]);
+            $departments = DepartmentModel::orderBy('department_id','DESC')->get();
+            return view('admin.dashboard.employee.addEmployee',['admin'=>$admin_data,'departments'=>$departments]);
         }
     
         // addEmployee 
@@ -65,7 +68,7 @@ class EmployeeController extends Controller
                  $employee->employee_email = $email;
                  $employee->employee_number = $number;
                  $employee->employee_password = $password ;
-                 $employee->employee_type = $empType ;
+                 $employee->department_id = $empType ;
                  $save = $employee->save();
                  if($save){
                     return self::swal(true,"Successfull","success");
@@ -80,7 +83,10 @@ class EmployeeController extends Controller
         public function viewEmployee()
         {
             $admin_data = self::adminDetails();
-            $employees = EmployeeModel::all();
+            $employees = DB::table('employee')
+            ->join('department','department.department_id','=','employee.department_id')
+            ->orderBy('employee_id','DESC')
+            ->get();
 
             return view('admin.dashboard.employee.viewEmployee',['admin'=>$admin_data,'employees'=>$employees]);
             

@@ -118,7 +118,7 @@
                     <span>{{$value->employee_email}}</span>
                   </td>
                   <td class="px-6" :class="dense? 'py-2': 'py-2 lg:py-3'">
-                    <span>{{$value->employee_type}}</span>
+                    <span>{{$value->department_name}}</span>
                   </td>
                   <td class="px-6" :class="dense? 'py-2': 'py-2 lg:py-3'">
                     <a href="#" class="btn btn-primary">Update</a>

@@ -8,7 +8,9 @@
         class="p-3 md:p-4 xxl:p-6">
         <div x-data="{activeTab:'list'}" class="white-box">
           <div class="flex justify-between items-center bb-dashed-n30">
-            <h4>Policy Passing Mark</h4>
+            <h4>Department Lists</h4>
+            <a href="{{url('/admin/add-department')}}"><button class="btn-primary-outlined"><i class="las la-upload"></i>
+              Add New Department</button></a>
           </div>
 
           <div
@@ -50,7 +52,8 @@
         },
         isAllChecked(){
           return this.items.every(item => item.checked==true)
-        } } "class="overflow-x-auto">
+        } } "
+                class="overflow-x-auto">
                 <table class="w-full whitespace-nowrap">
                   <thead class="text-left">
                     <tr class="bg-neutral-20 dark:bg-neutral-903">
@@ -61,13 +64,11 @@
                         </label>
                       </th>
                       <th class="px-6 duration-300"
-                        :class="dense? 'py-2': 'py-3 lg:py-5'">Policy Name</th>
+                        :class="dense? 'py-2': 'py-3 lg:py-5'">Department Name</th>
+                      <th class="px-6 duration-300"
+                        :class="dense? 'py-2': 'py-3 lg:py-5'">Created at</th>
                         <th class="px-6 duration-300"
-                        :class="dense? 'py-2': 'py-3 lg:py-5'">Passing Mark</th>
-                        <th class="px-6 duration-300"
-                        :class="dense? 'py-2': 'py-3 lg:py-5'">Update</th>
-                        <th class="px-6 duration-300"
-                        :class="dense? 'py-2': 'py-3 lg:py-5'">Delete</th>
+                        :class="dense? 'py-2': 'py-3 lg:py-5'">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -75,8 +76,8 @@
                       @php
                           $no =1;
                       @endphp
-                      @if(count($marks)>0)
-                      @foreach($marks as $value)
+                      @if(count($department)>0)
+                      @foreach($department as $value)
                       <tr
                       class="border-b border-neutral-30 duration-300 hover:bg-neutral-20 dark:border-neutral-500 dark:hover:bg-neutral-903"
                       :class="file.checked?'!bg-primary-300/10':'bg-neutral-0 dark:bg-neutral-904'">
@@ -89,34 +90,29 @@
                         <div class="flex items-center gap-3">
                           <i  :class="file.icon"
                             class="text-2xl"></i>
-                          <img  
-                            src="{{url('assets/images/folder.png')}}" width="24"
-                            height="24" alt />
-                            <span>{{$value->policy_title}}</span>
+                          
+                            <span>{{$value->department_name}}</span>
                         </div>
                       </td>
-                      <td class="px-6" :class="dense? 'py-1.5': 'py-3'"
-                        @click="openCustomizer">
-                        <div class="flex items-center gap-3">
-                          <i  :class="file.icon"
-                            class="text-2xl"></i>
-                            <span>{{$value->pass_mark}}</span>
-                        </div>
+                      <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
+                        <span class="m-text" >{{date_format($value->created_at,'d-M-Y')}}</span>
                       </td>
                      
                       <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
-                       <a href="{{url('/admin/show-question')}}/{{$value->policy_id}}"><button class="btn btn-primary">Update</button></a>
+                       <a href="{{url('/admin/view-policy')}}/{{$value->policy_id}}"><button class="btn btn-warning">Update</button></a>
+                       <button class="btn btn-danger">Delete</button>
                       </td>
-                      <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
-                       <button class="btn btn-warning">Delete</button>
-                       </td>
+                     
+         
                     </tr>
                       @endforeach
       @else 
       <tr>
-        <td colspan="4" class="text-center mt-4 text-danger"> Empty MCQ </td>
+        <td colspan="4"> Empty Policy Files.</td>
       </tr>
                       @endif 
+                  
+
                     {{-- </template> --}}
                   </tbody>
                 </table>

@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\McqController;
+use App\Http\Controllers\DepartmentController;
 
 
 
@@ -51,9 +52,12 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin/fetch-no-of-question',[McqController::class,'showNumberOfQuestion']);
     Route::get('/admin/view-mcq-marks',[McqController::class,'viewSetMarks']);
     
-// Route::get('/admin/set-mcq-marks',function(){
-//     return view('admin.dashboard.mcq.setMcqMarks');
-// });
+ 
+    // DEPARTMENT ROUTE 
+    
+    Route::get('/admin/add-department',[DepartmentController::class,'addDepartmentPage']);
+    Route::get('/admin/view-department',[DepartmentController::class,'viewDepartment']);
+    Route::post('/admin/add-department',[DepartmentController::class,'addDepartment']);
     
 
     

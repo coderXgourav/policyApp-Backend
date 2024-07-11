@@ -70,9 +70,9 @@
                     <div class="" class="">
                      <select name="empType" id="" class="selectForm" required>
                         <option value="">Employee Type</option>
-                        <option value="IT">IT</option>
-                        <option value="HR">HR</option>
-                        <option value="Manager">Manager</option>
+                        @foreach($departments as $item)
+                        <option value="{{$item->department_id}}">{{$item->department_name}} </option>
+                        @endforeach
                      </select>
                     </div>
                   </div>
