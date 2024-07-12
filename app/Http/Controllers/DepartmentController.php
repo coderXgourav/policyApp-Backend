@@ -53,7 +53,7 @@ class DepartmentController extends Controller
             return self::swal(true,'Successfull','success');
         }
 
-
+ 
     }
 
     // viewDepartment 
@@ -62,6 +62,12 @@ class DepartmentController extends Controller
         $admin_data = self::adminDetails();
         $departments = DepartmentModel::orderBy('department_id','DESC')->get();
         return view('admin.dashboard.department.view_department',['admin'=>$admin_data,'department'=>$departments]);
+
+    }
+
+    // sendPolicyToGroup
+    public function sendPolicyToGroup()
+    {
 
     }
 

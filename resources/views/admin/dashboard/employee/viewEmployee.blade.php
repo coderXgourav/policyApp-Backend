@@ -89,7 +89,7 @@
                   <th class="px-6 duration-300"
                     :class="dense? 'py-2': 'py-5'">Email</th>
                     <th class="px-6 duration-300"
-                    :class="dense? 'py-2': 'py-5'">Emp. type</th>
+                    :class="dense? 'py-2': 'py-5'">Emp. Department</th>
                   <th class="px-6 duration-300"
                     :class="dense? 'py-2': 'py-5'">Action</th>
                   <th></th>

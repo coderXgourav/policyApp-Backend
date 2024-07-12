@@ -11,14 +11,13 @@
 
     .selectForm1{
     padding-left: 8px;
-        border: 1px solid gray;
+    border: 1px solid gray;
     outline: none;
     border-radius: 8px;
     }
     .selectForm1 option{
       color: black;
     }
-
 
     .outlineNone{
         outline: none;
@@ -33,13 +32,13 @@
       class="w-full text-neutral-700 min-h-screen dark:text-neutral-20 pt-[60px] md:pt-[66px] duration-300"
     >
     <form id="form">
-<input type="hidden" id="url" value="/admin/assign-policy">
+<input type="hidden" id="url" value="/admin/assign-policy-to-group">
 <input type="hidden" id="method" value="POST">
 <input type="hidden" id="btnName" value="Assign Policy">
     {{@csrf_field()}}
       <div :class="[$store.app.menu=='horizontal' ? 'max-w-[1704px] mx-auto xxl:px-0 xxl:pt-8':'',$store.app.stretch?'xxxl:max-w-[92%] mx-auto':'']" class="p-3 md:p-4 xxl:p-6">
         <div class="white-box">
-          <h4 class="bb-dashed-n30">Assign Policy to Employee</h4>
+          <h4 class="bb-dashed-n30">Assign Policy to Department</h4>
           <div class="grid grid-cols-12 gap-4 xxl:gap-6">
            
             <div class="col-span-12 lg:col-span-10">
@@ -47,7 +46,7 @@
                 <div class="grid grid-cols-2 gap-4 xxl:gap-6 my-6">
                   <div class="col-span-2">
                       <div class="" class="">
-                        <p class="l-text font-small mb-1 input-text">Choose Employee Department </p>
+                        <p class="l-text font-small mb-1 input-text">Select Department </p>
                        <select name="department" class="w-full s-text bg-transparent py-2.5 xl:py-3.5 selectForm1" required onchange="fetchDepartmentEmployee(this.value)">
                           <option value="">Choose Department</option>
                         @foreach ($department as $item)
@@ -57,36 +56,21 @@
                       </div>
                     </div>  
               </div>
-                <div class="grid grid-cols-2 gap-4 xxl:gap-6 my-6">
-                  <div class="col-span-2">
+              <div class="grid grid-cols-2 gap-4 xxl:gap-6 my-6">
+                <div class="col-span-2">
                     <div class="" class="">
-                    <p class="l-text font-small mb-1 input-text">Select Employee to send policy </p>
-                     <select name="employee" id="" class="w-full s-text bg-transparent py-2.5 xl:py-3.5 selectForm1" required>
-                        <option value="">Select Employee</option>
- 
-                      {{-- @foreach ($employee as $item)
-                        <option value="{{$item->employee_id}}">{{$item->employee_name}}, Email - {{$item->employee_email}}, Phone Number - {{$item->employee_number}}  </option>
-                      @endforeach --}}
-
-                      <div id="employee"></div>
+                      <p class="l-text font-small mb-1 input-text">Select Policy </p>
+                     <select name="department" class="w-full s-text bg-transparent py-2.5 xl:py-3.5 selectForm1" required onchange="fetchDepartmentEmployee(this.value)">
+                        <option value="">Choose Policy</option>
+                      @foreach ($policy as $item)
+                        <option  value="{{$item->policy_id}}">{{$item->policy_title}}</option>
+                      @endforeach
                      </select>
                     </div>
-                  </div>
-                      <div class="col-span-2">
-                        <div class="" class="">
-                        <p class="l-text font-small mb-1 input-text">Choose Policy </p>
-                         <select name="policy" id="" class="w-full s-text bg-transparent py-2.5 xl:py-3.5 selectForm1" required>
-                            <option value="">Choose privacy policy</option>
-                          @foreach ($policy as $item)
-                            <option value="{{$item->policy_id}}">{{$item->policy_title}}</option>
-                          @endforeach
-                         </select>
-                        </div>
-                      </div>
-                  
-                </div>
+                  </div>  
+            </div>
                 <div class="flex gap-4 xxl:gap-6">
-                  <button class="btn-primary" id="btn">Assign Policy</button>
+                  <button class="btn-primary" id="btn">Send Policy</button>
                 </div>
               </div>
             </div>

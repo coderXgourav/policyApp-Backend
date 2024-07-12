@@ -471,6 +471,10 @@
                     <a href="{{url('/admin/view-department')}}"
                       class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">View Department</a>
                   </li>
+                  <li>
+                    <a href="{{url('/admin/policy-send-department')}}"
+                      class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">Assign Policy to Department</a>
+                  </li>
                 </ul>
               </div>
             </li>
@@ -500,7 +504,7 @@
                       class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">View Employee</a>
                   </li>
                   <li>
-                    <a href="{{url('/admin/sign-policy')}}"
+                    <a href="{{url('/admin/asign-policy')}}"
                       class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">Assign Policy</a>
                   </li>
 
