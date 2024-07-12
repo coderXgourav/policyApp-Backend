@@ -14,10 +14,6 @@ Route::get('/login',function(){
 });
 
 
-Route::get('/admin/sign-policy',function(){
-    return view('admin.dashboard.employee.signPolicy');
-});
-
 
 
 
@@ -58,6 +54,16 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin/add-department',[DepartmentController::class,'addDepartmentPage']);
     Route::get('/admin/view-department',[DepartmentController::class,'viewDepartment']);
     Route::post('/admin/add-department',[DepartmentController::class,'addDepartment']);
+
+
+    // ASSIGNMENT ROUTE 
+
+    // Route::get('/admin/asign-policy',[])
+    
+    Route::get('/admin/asign-policy',function(){
+        return view('admin.dashboard.employee.signPolicy');
+    });
+    
     
 
     
