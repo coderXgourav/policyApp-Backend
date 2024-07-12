@@ -60,7 +60,7 @@
                 <div class="col-span-2">
                     <div class="" class="">
                       <p class="l-text font-small mb-1 input-text">Select Policy </p>
-                     <select name="department" class="w-full s-text bg-transparent py-2.5 xl:py-3.5 selectForm1" required onchange="fetchDepartmentEmployee(this.value)">
+                     <select name="department" class="w-full s-text bg-transparent py-2.5 xl:py-3.5 selectForm1" required onchange="fetchDepartmentEmployee(this.value)" required>
                         <option value="">Choose Policy</option>
                       @foreach ($policy as $item)
                         <option  value="{{$item->policy_id}}">{{$item->policy_title}}</option>

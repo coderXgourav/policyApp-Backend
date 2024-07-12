@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DepartmentModel;
 use App\Models\AdminModel;
+use App\Models\PolicyModel;
 
 class DepartmentController extends Controller
 {
@@ -68,6 +69,11 @@ class DepartmentController extends Controller
     // sendPolicyToGroup
     public function sendPolicyToGroup()
     {
+        $admin_data = self::adminDetails();
+        $departments = DepartmentModel::orderBy('department_id','DESC')->get();
+        $policy = PolicyModel::orderBy('policy_id','DESC')->get();
+
+        return view('admin.dashboard.department.policy_assign_department',['admin'=>$admin_data,'department'=>$departments,'policy'=>$policy]);
 
     }
 
