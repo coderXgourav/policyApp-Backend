@@ -56,12 +56,17 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin/view-department',[DepartmentController::class,'viewDepartment']);
     Route::post('/admin/add-department',[DepartmentController::class,'addDepartment']);
     Route::get('/admin/policy-send-department',[DepartmentController::class,'sendPolicyToGroup']);
+    Route::post('/admin/assign-policy-to-group',[DepartmentController::class,'assignToGroup']);
 
 
     // ASSIGNMENT ROUTE 
 
-    Route::get('/admin/asign-policy',[PolicyAssignController::class,'policyAssignPage']);
+    Route::get('/admin/assign-policy',[PolicyAssignController::class,'policyAssignPage']);
+    Route::get('/admin/view-assign-policy',[PolicyAssignController::class,'viewAssignPolicy']);
     Route::get('/admin/fetch-employee',[PolicyAssignController::class,'fetchDepartmentEmployee']);
+    Route::post('/admin/assign-policy',[PolicyAssignController::class,'assignPolicyToEmployee']);
+    
+
 
   
     

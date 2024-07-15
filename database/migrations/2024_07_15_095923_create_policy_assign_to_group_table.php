@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('policy_assign_to_employee', function (Blueprint $table) {
-            $table->id('policy_assign_to_employee_id');
+        Schema::create('policy_assign_to_group', function (Blueprint $table) {
+            $table->id('policy_assign_to_group_id');
             $table->string('main_department_id');
-            $table->string('main_employee_id');
             $table->string('main_policy_id');
-            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('policy_assign_to_employee');
+        Schema::dropIfExists('policy_assign_to_group');
     }
 };

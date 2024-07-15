@@ -47,11 +47,47 @@ class PolicyAssignController extends Controller
     {
         $employee = DB::table('department')
         ->join('employee','employee.department_id','=','department.department_id')
+        ->where('employee.department_id',$request->id)
         ->orderBy('employee_id','DESC')
         ->get();
         return json_encode($employee);
     }
 
+
+    // assignPolicyToEmployee
+    public function assignPolicyToEmployee(Request $request)
+    {
+        $check = PolicyAssignToEmployeeModel::where([
+            ['main_employee_id',$request->employee],
+            ['main_policy_id',$request->policy],
+        ])->first();
+
+        if($check){
+            return self::swal(false,'Policy Already Assigned','warning');
+        }
+
+        $data_store = new PolicyAssignToEmployeeModel;
+       $data_store->main_department_id = $request->department; 
+       $data_store->main_employee_id = $request->employee; 
+       $data_store->main_policy_id = $request->policy; 
+       $data_store->save();
+       return self::swal(true,'Successfull','success');
+
+    }
+
+    // viewAssignPolicy
+
+    public function viewAssignPolicy()
+    {
+        $admin_data = self::adminDetails();
+        $policy = DB::table('policy_assign_to_employee')
+        ->join('department','department.department_id','=','policy_assign_to_employee.main_department_id')
+        ->join('employee','employee.employee_id','=','policy_assign_to_employee.main_employee_id')
+        ->join('policy','policy.policy_id','=','main_policy_id')
+        ->get();
+
+        return view('admin.dashboard.policy.view_assigned_policy',['admin'=>$admin_data,'data'=>$policy]);
+    }
 
     // END OF CLASS 
 }

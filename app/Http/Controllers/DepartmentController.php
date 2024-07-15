@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\DepartmentModel;
 use App\Models\AdminModel;
 use App\Models\PolicyModel;
+use App\Models\PolicyAssignToGroupModel;
+
 
 class DepartmentController extends Controller
 {
@@ -74,6 +76,26 @@ class DepartmentController extends Controller
         $policy = PolicyModel::orderBy('policy_id','DESC')->get();
 
         return view('admin.dashboard.department.policy_assign_department',['admin'=>$admin_data,'department'=>$departments,'policy'=>$policy]);
+
+    }
+
+    // assignToGroup 
+    public function assignToGroup(Request $request)
+    {
+        $check = PolicyAssignToGroupModel::where([
+            ['main_department_id','=',$request->department],
+            ['main_policy_id','=',$request->policy]
+        ])->first();
+
+        if($check){
+            return self::swal(false,'Policy Already Assigned','warning');
+        }
+        $policy_send = new PolicyAssignToGroupModel;
+        $policy_send->main_department_id = $request->department;
+        $policy_send->main_policy_id = $request->policy;
+        $policy_send->save();
+        return self::swal(true, "Successfull",'success');
+        
 
     }
 

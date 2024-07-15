@@ -47,6 +47,7 @@
                 <div class="grid grid-cols-2 gap-4 xxl:gap-6 my-6">
                   <div class="col-span-2">
                       <div class="" class="">
+                    
                         <p class="l-text font-small mb-1 input-text">Choose Employee Department </p>
                        <select name="department" class="w-full s-text bg-transparent py-2.5 xl:py-3.5 selectForm1" required onchange="fetchDepartmentEmployee(this.value)">
                           <option value="">Choose Department</option>
@@ -61,15 +62,18 @@
                   <div class="col-span-2">
                     <div class="" class="">
                     <p class="l-text font-small mb-1 input-text">Select Employee to send policy </p>
-                     <select name="employee" id="" class="w-full s-text bg-transparent py-2.5 xl:py-3.5 selectForm1" required>
-                        <option value="">Select Employee</option>
- 
-                      {{-- @foreach ($employee as $item)
-                        <option value="{{$item->employee_id}}">{{$item->employee_name}}, Email - {{$item->employee_email}}, Phone Number - {{$item->employee_number}}  </option>
-                      @endforeach --}}
 
+                     {{-- <select  id="" class="w-full s-text bg-transparent py-2.5 xl:py-3.5 selectForm1" required>
+                        <option value="">Select Employee</option>
                       <div id="employee"></div>
-                     </select>
+                     </select> --}}
+
+                     <select name="employee" id="departmentSelect" class="w-full s-text bg-transparent py-2.5 xl:py-3.5 selectForm1">
+                      <!-- Options will be dynamically added here -->
+                      <option value="">Select Employee</option>
+                     
+                    </select>
+
                     </div>
                   </div>
                       <div class="col-span-2">
@@ -108,10 +112,18 @@
     //  processData:false,
     //  contentType:false,
      success:function(data){
-      console.log(data);
+      $('#departmentSelect').empty();
+     data.forEach(item => {
 
-      $('#employee').html(data[0]);
- 
+     let employee_id = item.employee_id;
+     let employee_name = item.employee_name;
+     let employee_email = item.employee_email;
+     let employee_number = item.employee_number;
+     let optionElement = $('<option>').attr('value', employee_id).text(employee_name+", Email- "+ employee_email+", Phone Number- "+ employee_number);
+      
+     // Append the option element to the select dropdown using jQuery
+     $('#departmentSelect').append(optionElement);
+     });
      },error:function(){
       swal({
          title:"Technical Issue !",
