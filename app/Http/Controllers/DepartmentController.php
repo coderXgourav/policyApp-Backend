@@ -99,6 +99,15 @@ class DepartmentController extends Controller
 
     }
 
+    // deleteDepartment
+
+    public function deleteDepartment(Request $request)
+    {
+        $delete = DepartmentModel::find($request->id)->delete();
+        return self::swal(true,'Deleted','success');
+      
+    }
+
     // END CLASS 
     
 }

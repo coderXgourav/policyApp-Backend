@@ -28,6 +28,7 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin/add-employee',[EmployeeController::class,'addEmployeePage']);
     Route::post('/admin/add-employee',[EmployeeController::class,'addEmployee']);
     Route::get('/admin/view-employee',[EmployeeController::class,'viewEmployee']);
+    Route::get('/admin/delete-employee',[EmployeeController::class,'deleteEmployee']);
 
     // POLICY ROUTES 
     Route::get('/admin/add-policy',[PolicyController::class,'addPolicyPage']);
@@ -57,6 +58,7 @@ Route::group(['middleware'=>'admin'],function(){
     Route::post('/admin/add-department',[DepartmentController::class,'addDepartment']);
     Route::get('/admin/policy-send-department',[DepartmentController::class,'sendPolicyToGroup']);
     Route::post('/admin/assign-policy-to-group',[DepartmentController::class,'assignToGroup']);
+    Route::get('/admin/delete-department',[DepartmentController::class,'deleteDepartment']);
 
 
     // ASSIGNMENT ROUTE 

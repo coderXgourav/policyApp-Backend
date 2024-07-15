@@ -108,6 +108,15 @@ class EmployeeController extends Controller
             return redirect('/login');
         }
 
+        // deleteEmployee
+        public function deleteEmployee(Request $request)
+        {
+            $delete = EmployeeModel::find($request->id)->delete();
+            return self::swal(true,'Deleted','success');
+
+
+        }
+
         // END CLASS 
     
 }

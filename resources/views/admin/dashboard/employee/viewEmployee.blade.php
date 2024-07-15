@@ -101,7 +101,7 @@
                   @foreach($employees as $value)
                   <tr
                   class="border-b border-neutral-30 hover:bg-neutral-20 dark:hover:bg-neutral-903 duration-300 dark:border-neutral-500"
-                  :class="user.checked?'bg-neutral-20 dark:bg-neutral-903':'bg-neutral-0 dark:bg-neutral-904'">
+                  :class="user.checked?'bg-neutral-20 dark:bg-neutral-903':'bg-neutral-0 dark:bg-neutral-904'" id="{{$value->employee_id}}">
                 
                   <td class="px-6" :class="dense? 'py-2': 'py-2 lg:py-3'">
                     <div class="flex items-center gap-3">
@@ -121,7 +121,7 @@
                   </td>
                   <td class="px-6" :class="dense? 'py-2': 'py-2 lg:py-3'">
                     <a href="#" class="btn btn-primary">Update</a>
-                  <button type="button" class="btn btn-danger">Delete</button>
+                  <button type="button" class="btn btn-danger" onclick="Delete('/admin/delete-employee',{{$value->employee_id}})">Delete</button>
                   </td>
                 </tr>
                   @endforeach
