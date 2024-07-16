@@ -59,6 +59,7 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin/policy-send-department',[DepartmentController::class,'sendPolicyToGroup']);
     Route::post('/admin/assign-policy-to-group',[DepartmentController::class,'assignToGroup']);
     Route::get('/admin/delete-department',[DepartmentController::class,'deleteDepartment']);
+    Route::get('/admin/view-assign-policy-department',[DepartmentController::class,'viewAssignedDepartment']);
 
 
     // ASSIGNMENT ROUTE 

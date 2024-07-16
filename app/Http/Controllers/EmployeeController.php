@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\AdminModel; 
 use App\Models\EmployeeModel; 
 use App\Models\DepartmentModel; 
+use App\Models\PolicyModel; 
 use Session; 
 use DB;
 
@@ -114,6 +115,41 @@ class EmployeeController extends Controller
             $delete = EmployeeModel::find($request->id)->delete();
             return self::swal(true,'Deleted','success');
 
+
+        }
+
+        // viewAssignedPolicy
+        public function viewAssignedPolicy()
+        {
+
+            $employee_data = self::employeeDetails();
+            $policy = DB::table('policy_assign_to_employee')
+            ->join('policy','policy.policy_id','=','policy_assign_to_employee.main_policy_id')
+            ->join('employee','employee.employee_id','=','policy_assign_to_employee.main_employee_id')
+            ->get();
+        
+            return view('employeePanel.dashboard.policy.viewPolicy',['employee'=>$employee_data,'policy'=>$policy]);
+        }
+
+        // viewPolicyByEmployee
+        public function viewPolicyByEmployee($id)
+        {
+            $employee_data = self::employeeDetails();
+            $policy = PolicyModel::find($id);
+
+            $haveMcq = DB::table('policy')
+            ->join('mcq','mcq.main_policy_id','=','policy.policy_id')
+            ->where('policy.policy_id',$id)
+            ->count();
+            if($haveMcq>0){
+             $mcq_test = 1;
+            }else{
+             $mcq_test = 0;
+            }
+          
+
+
+            return view('employeePanel.dashboard.policy.show_policy',['employee'=>$employee_data,'policy'=>$policy,'mcq_test'=>$mcq_test]);
 
         }
 

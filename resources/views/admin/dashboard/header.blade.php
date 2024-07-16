@@ -475,6 +475,10 @@
                     <a href="{{url('/admin/policy-send-department')}}"
                       class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">Assign Policy to Department</a>
                   </li>
+                  <li>
+                    <a href="{{url('/admin/view-assign-policy-department')}}"
+                      class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">View Assigned Policy to Department</a>
+                  </li>
                 </ul>
               </div>
             </li>

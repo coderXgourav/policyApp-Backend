@@ -6,9 +6,14 @@ use App\Http\Controllers\EmployeeController;
 
 
 
-Route::get('/employee/view-policy',function(){
-    return view('employeePanel.dashboard.policy.viewPolicy');
-});
+
+
+Route::get('/employee/view-policy',[EmployeeController::class,'viewAssignedPolicy']);
+Route::get('/employee/view-policy/{id}',[EmployeeController::class,'viewPolicyByEmployee']);
+
+
+
+
 Route::get('/employee/test-mcq',function(){
     return view('employeePanel.dashboard.mcq.mcqpage');
 });

@@ -8,6 +8,7 @@ use App\Models\DepartmentModel;
 use App\Models\AdminModel;
 use App\Models\PolicyModel;
 use App\Models\PolicyAssignToGroupModel;
+use DB;
 
 
 class DepartmentController extends Controller
@@ -106,6 +107,21 @@ class DepartmentController extends Controller
         $delete = DepartmentModel::find($request->id)->delete();
         return self::swal(true,'Deleted','success');
       
+    }
+
+    // viewAssignedDepartment
+    public function viewAssignedDepartment()
+    {
+        $admin_data = self::adminDetails();
+
+        $data = DB::table('policy_assign_to_group')
+        ->join('department','department.department_id','=','policy_assign_to_group.main_department_id')
+        ->join('policy','policy.policy_id','=','policy_assign_to_group.main_policy_id')
+        ->orderBy('policy_assign_to_group_id','DESC')
+        ->get();
+
+        return view('admin.dashboard.department.view_assigned_policy_to_department',['admin'=>$admin_data,'data'=>$data]);
+
     }
 
     // END CLASS 

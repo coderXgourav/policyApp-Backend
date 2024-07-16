@@ -1,4 +1,4 @@
-@include('employeePanel.dashboard.header')
+@include('admin.dashboard.header')
     <!-- Main Content -->
     <main
       :class="[$store.app.sidebar && $store.app.menu=='vertical'?'w-full xl:ltr:ml-[280px] xl:rtl:mr-[280px] xl:w-[calc(100%-280px)]':'w-full',$store.app.sidebar && $store.app.menu=='hovered'?'w-full xl:ltr:ml-[80px] xl:w-[calc(100%-80px)] xl:rtl:mr-[80px]':'w-full', $store.app.menu == 'horizontal' && 'xl:!pt-[118px]', $store.app.contrast=='high'?'bg-neutral-0 dark:bg-neutral-904':'bg-neutral-20 dark:bg-neutral-903']"
@@ -8,7 +8,9 @@
         class="p-3 md:p-4 xxl:p-6">
         <div class="white-box">
           <div class="flex justify-between items-center bb-dashed-n30">
-            <h4>Privacy Policy Lists</h4>
+            <h4>Assigned Policy to Department</h4>
+            <a href="{{url('/admin/policy-send-department')}}"><button class="btn-primary-outlined"><i class="las la-upload"></i>
+              Assign New Policy</button></a>
           </div>
 
           <div
@@ -64,9 +66,9 @@
                       <th class="px-6 duration-300"
                         :class="dense? 'py-2': 'py-3 lg:py-5'">Policy Title</th>
                         <th class="px-6 duration-300"
-                        :class="dense? 'py-2': 'py-3 lg:py-5'">Assigned Date</th>
+                        :class="dense? 'py-2': 'py-3 lg:py-5'">Department</th>
                         <th class="px-6 duration-300"
-                        :class="dense? 'py-2': 'py-3 lg:py-5'">View Polilcy</th>
+                        :class="dense? 'py-2': 'py-3 lg:py-5'">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -75,7 +77,7 @@
                           $no =1;
                       @endphp
                   
-                      @foreach($policy as $value)
+                      @foreach($data as $value)
                       <tr
                       class="border-b border-neutral-30 duration-300 hover:bg-neutral-20 dark:border-neutral-500 dark:hover:bg-neutral-903"
                       :class="file.checked?'!bg-primary-300/10':'bg-neutral-0 dark:bg-neutral-904'">
@@ -88,21 +90,27 @@
                         <div class="flex items-center gap-3">
                           <i  :class="file.icon"
                             class="text-2xl"></i>
-                    <img  
-                      src="{{url('assets/images/folder.png')}}" width="24"
-                      height="24" alt />
+                          <img  
+                            src="{{url('assets/images/folder.png')}}" width="24"
+                            height="24" alt />
                             <span>{{$value->policy_title}}</span>
                         </div>
                       </td>
                       <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
-                        <span class="m-text" >{{ date('d-M-Ys', strtotime($value->created_at)) }}</span>
+                        <span class="m-text" >{{$value->department_name}}</span>
                       </td>
                       <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
-                       <a href="{{url('/employee/view-policy')}}/{{$value->main_policy_id}}"><button class="btn btn-warning">View Policy</button></a>
+                       <a href="{{url('/admin/view-policy')}}/{{$value->main_policy_id}}"><button class="btn btn-warning">View Policy</button></a>
+                       <button class="btn btn-success">Edit</button>
+                       <button class="btn btn-danger">Delete</button>
                       </td>
+                     
+         
                     </tr>
                       @endforeach
+     
                     {{-- </template> --}}
+                    
                   </tbody>
                 </table>
               </div>
@@ -115,4 +123,4 @@
       </div>
     </main>
 
-  @include('employeePanel.dashboard.footer')
+  @include('admin.dashboard.footer')
