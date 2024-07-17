@@ -9,22 +9,20 @@
         <div x-data="{activeTab:'list'}" class="white-box">
           <div class="flex justify-between items-center bb-dashed-n30">
             <h4>Policy View</h4>
-            <a href="{{url('/employee/view-policy')}}"><button class="btn-primary-outlined">
-               Policy List</button></a>
           </div>
           <div class=" bb-dashed-n30" style="display: flex; align-items:center; gap:15px;">
             <div>
                 <h6 class="text-success">I have carefully reviewed the {{$policy->policy_title}} privacy policy and accept all its terms and conditions.</h6>
 
                 @if($mcq_test>0)
-               <p style="margin-top: 15px; color:#63c763;">Please compleate the test and get e-signed Policy Paper.</p>
+               <p style="margin-top: 15px; color:#63c763;">Please compleate the test and get Policy Paper.</p>
                 @else 
-               <p style="margin-top: 15px; color:#63c763;">Click Get policy paper to download e-signed policy paper</p>
+               <p style="margin-top: 15px; color:#63c763;">Click Get policy paper to download policy paper</p>
                 @endif
             </div>
             <div>
                 @if($mcq_test>0)
-                <a href="{{url('/employee/view-policy')}}"><button class="btn-primary">Start Test </button></a>
+                <a href="{{url('/employee/policy-test')}}/{{$policy->policy_id}}"><button class="btn-primary">Start Test</button></a>
                 @else 
                 <a href="{{url('/employee/view-policy')}}"><button class="btn-primary">Get Policy Paper</button></a>
 

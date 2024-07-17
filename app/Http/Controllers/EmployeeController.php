@@ -97,7 +97,11 @@ class EmployeeController extends Controller
         // employeeDashboard
         public function employeeDashboard()
         {
-            $employee_details = self::employeeDetails();
+            $employee_details = DB::table('employee')
+            ->join('department','department.department_id','=','department.department_id')
+            ->where('employee.employee_id',session('employee'))
+            ->first();
+        
             return view('employeePanel.dashboard.index',['employee'=>$employee_details]);
         }
 
@@ -123,12 +127,19 @@ class EmployeeController extends Controller
         {
 
             $employee_data = self::employeeDetails();
-            $policy = DB::table('policy_assign_to_employee')
+
+            // $policy = DB::table('policy_assign_to_employee')
+            // ->join('policy','policy.policy_id','=','policy_assign_to_employee.main_policy_id')
+            // ->join('employee','employee.employee_id','=','policy_assign_to_employee.main_employee_id')
+            // ->get();
+
+            $group_policy = DB::table('policy_assign_to_employee')
+            ->join('department','department.department_id','=','policy_assign_to_employee.main_department_id')
             ->join('policy','policy.policy_id','=','policy_assign_to_employee.main_policy_id')
-            ->join('employee','employee.employee_id','=','policy_assign_to_employee.main_employee_id')
+            ->join('employee','employee.department_id','=','department.department_id')
             ->get();
-        
-            return view('employeePanel.dashboard.policy.viewPolicy',['employee'=>$employee_data,'policy'=>$policy]);
+          
+            return view('employeePanel.dashboard.policy.viewPolicy',['employee'=>$employee_data,'policy'=>$group_policy]);
         }
 
         // viewPolicyByEmployee
@@ -141,17 +152,49 @@ class EmployeeController extends Controller
             ->join('mcq','mcq.main_policy_id','=','policy.policy_id')
             ->where('policy.policy_id',$id)
             ->count();
+
             if($haveMcq>0){
              $mcq_test = 1;
             }else{
              $mcq_test = 0;
             }
-          
-
-
+      
             return view('employeePanel.dashboard.policy.show_policy',['employee'=>$employee_data,'policy'=>$policy,'mcq_test'=>$mcq_test]);
+        }
+
+        // viewPolicyQuestions 
+        public function viewPolicyQuestions($id)
+        {
+            $employee_data = self::employeeDetails();
+            
+            $questions = DB::table('policy')
+            ->join('mcq','mcq.main_policy_id','=','policy.policy_id')
+            ->where('mcq.main_policy_id',$id)
+            ->get();
+
+          return view('employeePanel.dashboard.mcq.mcqpage',['employee'=>$employee_data,'mcq'=>$questions]);
 
         }
+
+        // departmentWisePolicy
+        public function departmentWisePolicy($id)
+        {
+
+            $employee_data = self::employeeDetails();
+
+            $group_policy = DB::table('policy_assign_to_group')
+            ->join('department','department.department_id','=','policy_assign_to_group.main_department_id')
+            ->join('policy','policy.policy_id','=','policy_assign_to_group.main_policy_id')
+            ->join('employee','employee.department_id','=','department.department_id')
+            ->get();
+
+            return view('employeePanel.dashboard.policy.view_group_policy',['employee'=>$employee_data,'policy'=>$group_policy]);
+
+
+
+        }
+
+
 
         // END CLASS 
     

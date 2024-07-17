@@ -5,6 +5,14 @@
     border-radius: 8px;
     padding-left: 8px;
     }
+    .question_palate{
+      background: #1d1e24;
+    padding: 20px;
+    border-radius: 9px;
+    }
+    .primary{
+      font-size: 14px !important;
+    } 
     .selectForm option{
       color: black;
     }
@@ -30,51 +38,59 @@
       class="w-full text-neutral-700 min-h-screen dark:text-neutral-20 pt-[60px] md:pt-[66px] duration-300"
     >
     <form action="" method="GET">
-
-    
       <div :class="[$store.app.menu=='horizontal' ? 'max-w-[1704px] mx-auto xxl:px-0 xxl:pt-8':'',$store.app.stretch?'xxxl:max-w-[92%] mx-auto':'']" class="p-3 md:p-4 xxl:p-6">
         <div class="white-box">
-          <h4 class="bb-dashed-n30">Privacy Policy Test</h4>
+          <h4 class="bb-dashed-n30">Multiple-Choice Questions</h4>
           <div class="grid grid-cols-12 gap-4 xxl:gap-6">
            
             <div class="col-span-12 lg:col-span-10">
               <div class="n20-box">
                 <div class="grid grid-cols-2 gap-4 xxl:gap-6 my-6">
-                    <div class="col-span-2">
-                        <p class="l-text font-medium mb-4">1. How many years you have Experience ?</p>
-                        <ul class="flex flex-wrap gap-4">
-                          <li>
-                            <div class="custom-radio">
-                              <input type="radio" id="0" name="experience" />
-                              <label class="primary" for="0">(A) No Experience</label>
-                            </div>
-                          </li>
-                          <li>
-                            <div class="custom-radio">
-                              <input type="radio" id="1" name="experience" />
-                              <label class="primary" for="1">(B) 1 year exp</label>
-                            </div>
-                          </li>
-                          <li>
-                            <div class="custom-radio">
-                              <input type="radio" id="2" name="experience" />
-                              <label class="primary" for="2">(C) 2 year exp</label>
-                            </div>
-                          </li>
-                          <li>
-                            <div class="custom-radio">
-                              <input type="radio" id="3" name="experience" />
-                              <label class="primary" for="3"> (D) &gt; 3 year exp</label>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
+                  @php
+                      $no = 1;
+                  @endphp
+                  @foreach ($mcq as $item)
+                  <div class="col-span-2 question_palate">
+                    <p class="l-text font-medium mb-4"> {{$no++}}. {{$item->question}} ? </p>
+                    <ul class="flex flex-wrap gap-4">
+                      <li>
+                        <div>
+                          <input type="radio" id="optiona{{$item->mcq_id}}" name="{{$item->mcq_id}}">
+                          <label class="primary" for="optiona{{$item->mcq_id}}">(A) {{$item->option_a}}</label>
+                        </input>
+                        </div>
+                      </li>
+                        <li>
+                        <div >
+                          <input type="radio" id="optionb{{$item->mcq_id}}" name="{{$item->mcq_id}}">
+                          <label class="primary" for="optionb{{$item->mcq_id}}">(B) {{$item->option_b}}</label>
+                        </input>
+                        </div>
+                      </li>
+                      <li>
+                        <div >
+                          <input type="radio" id="optionc{{$item->mcq_id}}" name="{{$item->mcq_id}}">
+                          <label class="primary" for="optionc{{$item->mcq_id}}">(C) {{$item->option_c}}</label>
+                        </input>
+                        </div>
+                      </li>
+                      <li>
+                        <div >
+                          <input type="radio" id="optiond{{$item->mcq_id}}" name="{{$item->mcq_id}}">
+                          <label class="primary" for="optiond{{$item->mcq_id}}"> (D) {{$item->option_d}}</label>
+                        </input>
+                        </div>
+                      </li>
+                    </ul>
+                </div>
+                  @endforeach
+                  
+                    
       
                  
                 </div>
-                <div class="flex gap-4 xxl:gap-6">
-                  <button class="btn-primary">Submit Answer</button>
-                </div>
+                
+              
               </div>
             </div>
           </div>

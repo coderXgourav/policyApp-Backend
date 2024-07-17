@@ -460,13 +460,17 @@
                   data-submenu="invoice">
                   <li>
                     <a href="{{url('/employee/view-policy')}}"
-                      class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">View Policy</a>
+                      class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">Assigned Policy</a>
+                  </li>
+                  <li>
+                    <a href="{{url('/employee/view-department-policy')}}/{{$employee->department_id}}"
+                      class="py-2.5 px-3 hover:text-primary-300 duration-300 inline-flex submenu-link-v">Department Policy</a>
                   </li>
                 </ul>
               </div>
             </li>
 
-        <li class="relative">
+        {{-- <li class="relative">
           <button :class="opened=='blog' ? 'bg-primary-50 text-primary-300' : ''" @click="opened=='blog' ? opened = null : opened='blog'" class="flex w-full items-center justify-between gap-2 hover:bg-primary-50 duration-300 rounded-lg p-2 xxl:px-3">
             <span class="flex items-center gap-2">
               <i class="las la-newspaper text-xl text-primary-300"></i>
@@ -481,7 +485,7 @@
               </li>
             </ul>
           </div>
-        </li>
+        </li> --}}
           </ul>
          
           <ul

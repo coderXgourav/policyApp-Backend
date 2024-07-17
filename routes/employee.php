@@ -8,9 +8,6 @@ use App\Http\Controllers\EmployeeController;
 
 
 
-Route::get('/employee/view-policy',[EmployeeController::class,'viewAssignedPolicy']);
-Route::get('/employee/view-policy/{id}',[EmployeeController::class,'viewPolicyByEmployee']);
-
 
 
 
@@ -27,6 +24,13 @@ Route::group(['middleware'=>'employee'],function(){
 
     Route::get('/employee/dashboard',[EmployeeController::class,'employeeDashboard']);
     Route::get('/employee/logout',[EmployeeController::class,'employeeLogout']);
+    
+    Route::get('/employee/view-policy',[EmployeeController::class,'viewAssignedPolicy']);
+    Route::get('/employee/view-policy/{id}',[EmployeeController::class,'viewPolicyByEmployee']);
+
+    Route::get('/employee/policy-test/{id}',[EmployeeController::class,'viewPolicyQuestions']);
+    Route::get('/employee/view-department-policy/{id}',[EmployeeController::class,'departmentWisePolicy']);
+
 
 
 });
