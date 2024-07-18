@@ -23,6 +23,7 @@ class="footer bg-neutral-0 dark:bg-neutral-904 text-neutral-700 dark:text-neutra
 </footer>
 
 <!-- js libraries and custom scripts -->
+
 <script src="{{url('assets/js/libs/quill.js')}}"></script>
 <script src="{{url('assets/js/libs/dropzone.min.js')}}"></script>
 
@@ -33,7 +34,8 @@ class="footer bg-neutral-0 dark:bg-neutral-904 text-neutral-700 dark:text-neutra
 <script defer src="{{url('assets/js/libs/alpine.min.js')}}"></script>
 <script src="{{url('assets/js/libs/nice-select2.js')}}"></script>
 <script src="{{url('assets/js/charts.js')}}"></script>
-<script src="{{url('assets/js/main.js')}}"></script>
+<script src="{{url('asset
+s/js/main.js')}}"></script>
 
 <script src="{{url('/projectJs/jquery.js')}}"></script>
 <script src="{{url('/projectJs/form_validation.js')}}"></script>

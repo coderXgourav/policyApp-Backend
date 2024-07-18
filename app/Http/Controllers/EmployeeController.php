@@ -7,6 +7,7 @@ use App\Models\AdminModel;
 use App\Models\EmployeeModel; 
 use App\Models\DepartmentModel; 
 use App\Models\PolicyModel; 
+use App\Models\McqResultModel;
 use Session; 
 use DB;
 
@@ -171,8 +172,18 @@ class EmployeeController extends Controller
             ->join('mcq','mcq.main_policy_id','=','policy.policy_id')
             ->where('mcq.main_policy_id',$id)
             ->get();
+            
+            $pass_mark = DB::table('policy')
+            ->join('pass_mark','pass_mark.policy_main_id','=','policy.policy_id')
+            ->first();
 
-          return view('employeePanel.dashboard.mcq.mcqpage',['employee'=>$employee_data,'mcq'=>$questions]);
+
+
+            // echo "<pre>";
+            // print_r($pass_mark);
+            // die();
+
+          return view('employeePanel.dashboard.mcq.mcqpage',['employee'=>$employee_data,'mcq'=>$questions,'pass_mark'=>$pass_mark->pass_mark]);
 
         }
 
@@ -189,8 +200,19 @@ class EmployeeController extends Controller
             ->get();
 
             return view('employeePanel.dashboard.policy.view_group_policy',['employee'=>$employee_data,'policy'=>$group_policy]);
+        }
 
+        // policyTestSubmit 
+        public function policyTestSubmit(Request $request)
+        {
+           $save_result = new McqResultModel;
+           $save_result->main_policy_id = $request->policy_id;
+           $save_result->main_employee_id = session('employee');
+           $save_result->marks = 10;
+           $save_result->date_time = date('s:i:H d-m-Y'); 
+           $save_result->save();
 
+           return self::swal(true,'Answer Submited','success');
 
         }
 
