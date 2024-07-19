@@ -138,6 +138,7 @@ class EmployeeController extends Controller
             ->join('department','department.department_id','=','policy_assign_to_employee.main_department_id')
             ->join('policy','policy.policy_id','=','policy_assign_to_employee.main_policy_id')
             ->join('employee','employee.department_id','=','department.department_id')
+            ->where('employee.employee_id',session('employee'))
             ->get();
           
             return view('employeePanel.dashboard.policy.viewPolicy',['employee'=>$employee_data,'policy'=>$group_policy]);
@@ -192,11 +193,13 @@ class EmployeeController extends Controller
         {
 
             $employee_data = self::employeeDetails();
+            $department_id = $employee_data->department_id;
 
             $group_policy = DB::table('policy_assign_to_group')
             ->join('department','department.department_id','=','policy_assign_to_group.main_department_id')
             ->join('policy','policy.policy_id','=','policy_assign_to_group.main_policy_id')
             ->join('employee','employee.department_id','=','department.department_id')
+            ->where('policy_assign_to_group.main_department_id',$department_id)
             ->get();
 
             return view('employeePanel.dashboard.policy.view_group_policy',['employee'=>$employee_data,'policy'=>$group_policy]);
@@ -205,6 +208,24 @@ class EmployeeController extends Controller
         // policyTestSubmit 
         public function policyTestSubmit(Request $request)
         {
+
+         $questions = DB::table('mcq')  
+         ->join('policy','policy.policy_id','=','mcq.main_policy_id')
+         ->get();
+
+         $array = (array) $questions;
+
+         echo "<pre>";
+         print_r($array);
+         die(); 
+
+        foreach($questions as $item){
+            echo $item['policy_name'];
+            echo "<br>";
+        }
+
+
+
            $save_result = new McqResultModel;
            $save_result->main_policy_id = $request->policy_id;
            $save_result->main_employee_id = session('employee');
