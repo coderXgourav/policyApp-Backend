@@ -31,6 +31,9 @@
     .outlineNone{
         outline: none;
     }
+    .error{
+      color:red;
+    }
 </style>
     <!-- Main Content -->
     <main
@@ -68,28 +71,28 @@
                     <ul class="flex flex-wrap gap-4">
                       <li>
                         <div>
-                          <input type="radio" id="optiona{{$item->mcq_id}}" name="{{$item->mcq_id}}" value="{{$item->option_a}}">
+                          <input type="radio" id="optiona{{$item->mcq_id}}" name="{{$item->mcq_id}}" value="{{$item->option_a}}" required>
                           <label class="primary" for="optiona{{$item->mcq_id}}">(A) {{$item->option_a}}</label>
                         </input>
                         </div>
                       </li>
                         <li>
                         <div >
-                          <input type="radio" id="optionb{{$item->mcq_id}}" name="{{$item->mcq_id}}"  value="{{$item->option_b}}">
+                          <input type="radio" id="optionb{{$item->mcq_id}}" name="{{$item->mcq_id}}"  value="{{$item->option_b}}" required >
                           <label class="primary" for="optionb{{$item->mcq_id}}">(B) {{$item->option_b}}</label>
                         </input>
                         </div>
                       </li>
                       <li>
                         <div >
-                          <input type="radio" id="optionc{{$item->mcq_id}}" name="{{$item->mcq_id}}"  value="{{$item->option_c}}">
+                          <input type="radio" id="optionc{{$item->mcq_id}}" name="{{$item->mcq_id}}"  value="{{$item->option_c}}" required >
                           <label class="primary" for="optionc{{$item->mcq_id}}">(C) {{$item->option_c}}</label>
                         </input>
                         </div>
                       </li>
                       <li>
                         <div >
-                          <input type="radio" id="optiond{{$item->mcq_id}}" name="{{$item->mcq_id}}"  value="{{$item->option_d}}">
+                          <input type="radio" id="optiond{{$item->mcq_id}}" name="{{$item->mcq_id}}"  value="{{$item->option_d}}" required >
                           <label class="primary" for="optiond{{$item->mcq_id}}"> (D) {{$item->option_d}}</label>
                         </input>
                         </div>
@@ -103,12 +106,10 @@
         
         <input type="hidden" name="policy_id" value="{{$mcq[0]->policy_id}}">
 
+        {{-- <button type="submit" class="btn btn-primary">Submit Test</button> --}}
         <button type="submit" id="btn" class="btn btn-primary">Submit Test</button>
       </div>
-                 
                 </div>
-                
-              
               </div>
             </div>
           </div>
@@ -117,3 +118,18 @@
     </form>
     </main>
 @include('employeePanel.dashboard.footer')
+
+{{-- <script>
+function CheckAns(mcq_id,user_ans){
+  $.ajax({
+    url:"/employee/send-answer",
+    method:"GET",
+    data:{mcq_id:mcq_id,user_ans:user_ans},
+    dataType:"JSON",
+    success:function(data){
+      console.log('success');
+    }
+  });
+
+}
+</script> --}}

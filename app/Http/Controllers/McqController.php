@@ -49,7 +49,9 @@ class McqController extends Controller
         $option_b =  $request->option_b;
         $option_c =  $request->option_c;
         $option_d =  $request->option_d;
+
         $ans_option =  $request->ans_option;   
+        
 
         $mcq = new McqModel;
         $mcq->main_policy_id = $policy;
@@ -58,7 +60,19 @@ class McqController extends Controller
         $mcq->option_b = $option_b;
         $mcq->option_c = $option_c;
         $mcq->option_d = $option_d;
-        $mcq->ans = $ans_option;
+
+        if($ans_option=="A"){
+            $mcq->ans = $option_a;
+        }else if($ans_option=="B"){
+            $mcq->ans = $option_b;
+
+        }else if($ans_option=="C"){
+            $mcq->ans = $option_c;
+            
+        }else if($ans_option=="D"){
+            $mcq->ans = $option_d;
+        }
+        
         $mcq->save();
 
         return self::swal(true,'Successfull','success');

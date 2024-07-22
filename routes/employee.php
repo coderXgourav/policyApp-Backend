@@ -31,7 +31,7 @@ Route::group(['middleware'=>'employee'],function(){
     Route::get('/employee/policy-test/{id}',[EmployeeController::class,'viewPolicyQuestions']);
     Route::get('/employee/view-department-policy/{id}',[EmployeeController::class,'departmentWisePolicy']);
     Route::post('/employee/submit-mcq',[EmployeeController::class,'policyTestSubmit']);
+    Route::get('/employee/send-answer',[EmployeeController::class,'mcqCheck']);
 
 
 });
-

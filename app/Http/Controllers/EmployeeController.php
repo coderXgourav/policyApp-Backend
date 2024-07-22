@@ -8,6 +8,8 @@ use App\Models\EmployeeModel;
 use App\Models\DepartmentModel; 
 use App\Models\PolicyModel; 
 use App\Models\McqResultModel;
+use App\Models\DummyMarkModel;
+use App\Models\McqModel;
 use Session; 
 use DB;
 
@@ -205,40 +207,66 @@ class EmployeeController extends Controller
             return view('employeePanel.dashboard.policy.view_group_policy',['employee'=>$employee_data,'policy'=>$group_policy]);
         }
 
-        // policyTestSubmit 
-        public function policyTestSubmit(Request $request)
-        {
 
-         $questions = DB::table('mcq')  
-         ->join('policy','policy.policy_id','=','mcq.main_policy_id')
-         ->get();
 
-         $array = (array) $questions;
 
-         echo "<pre>";
-         print_r($array);
-         die(); 
+        // mcqCheck
+        public function mcqCheck(Request $request){
+            
+            $mcqId = $request->mcq_id;
+            $ans = $request->user_ans;
 
-        foreach($questions as $item){
-            echo $item['policy_name'];
-            echo "<br>";
+            $checkAnswer = McqModel::find($mcqId);
+         
+          if($checkAnswer->ans==$ans){
+            $currentMark = session('mark');
+            $newMark = $currentMark+1;
+            session(['mark' => $newMark]);   
+          }else{
+           echo "wrong";
+          }
+          echo session('mark');
+            
+            
+             
         }
 
 
+
+        // policyTestSubmit 
+
+        public function policyTestSubmit(Request $request)
+        {
+
+       // Step 1: Retrieve all questions related to the policy_id
+$questions = DB::table('mcq')
+->join('policy', 'policy.policy_id', '=', 'mcq.main_policy_id')
+->where('policy.policy_id', $request->policy_id)
+->pluck('mcq.mcq_id'); // Retrieve only the mcq_id values
+
+// Step 2: Retrieve correct answers for all questions
+$correct_ans = McqModel::whereIn('mcq_id', $questions)->pluck('ans', 'mcq_id');
+
+// Step 3: Calculate the score based on user answers
+$score = 0;
+
+foreach ($questions as $ques) {
+$user_ans = $request->$ques; // Assuming $request->$ques contains the user's answer
+$correct_ans_for_question = $correct_ans[$ques] ?? null;
+
+if ($correct_ans_for_question !== null && $user_ans === $correct_ans_for_question) {
+    $score++;
+}
+}
 
            $save_result = new McqResultModel;
            $save_result->main_policy_id = $request->policy_id;
            $save_result->main_employee_id = session('employee');
-           $save_result->marks = 10;
+           $save_result->marks = $score;
            $save_result->date_time = date('s:i:H d-m-Y'); 
            $save_result->save();
-
            return self::swal(true,'Answer Submited','success');
-
         }
 
-
-
         // END CLASS 
-    
 }
