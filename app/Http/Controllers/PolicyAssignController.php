@@ -36,7 +36,9 @@ class PolicyAssignController extends Controller
     public function policyAssignPage()
     {
         $admin_data = self::adminDetails();
+
         $policy = PolicyModel::orderBy('policy_id','DESC')->get();
+        
         $department = DepartmentModel::orderBy('department_id','DESC')->get();
         $employee = EmployeeModel::orderBy('employee_id','DESC')->get();
         return view('admin.dashboard.employee.signPolicy',['admin'=>$admin_data,'policy'=>$policy,'department'=>$department,'employee'=>$employee]);

@@ -67,6 +67,8 @@
                         :class="dense? 'py-2': 'py-3 lg:py-5'">Assigned Date</th>
                         <th class="px-6 duration-300"
                         :class="dense? 'py-2': 'py-3 lg:py-5'">View Polilcy</th>
+                        <th class="px-6 duration-300"
+                        :class="dense? 'py-2': 'py-3 lg:py-5'">Click & Show Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -100,6 +102,9 @@
                       <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
                        <a href="{{url('/employee/view-policy')}}/{{$value->main_policy_id}}"><button class="btn btn-warning">View Policy</button></a>
                       </td>
+                      <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
+                       <button id="btn{{$value->main_policy_id}}" class="btn " onclick="CheckStatus({{$value->main_policy_id}})">Exam Status</button>
+                       </td>
                     </tr>
                       @endforeach
                     {{-- </template> --}}
@@ -116,3 +121,26 @@
     </main>
 
   @include('employeePanel.dashboard.footer')
+ <script>
+
+function CheckStatus(id){
+  $.ajax({
+    url:"/employee/check-status",
+    method:"GET",
+    data:{id:id},
+    dataType:"JSON",
+    beforeSend:function(){
+     $('#btn'+id).html('Please Wait')
+    },
+    success:function(data){
+     $('#btn'+id).html(data.title);
+     if(data.status){
+      $('#btn'+id).css('background','green');
+     }else{
+      $('#btn'+id).css('background','red');
+     }
+    }
+  });
+
+}
+  </script>

@@ -131,11 +131,6 @@ class EmployeeController extends Controller
 
             $employee_data = self::employeeDetails();
 
-            // $policy = DB::table('policy_assign_to_employee')
-            // ->join('policy','policy.policy_id','=','policy_assign_to_employee.main_policy_id')
-            // ->join('employee','employee.employee_id','=','policy_assign_to_employee.main_employee_id')
-            // ->get();
-
             $group_policy = DB::table('policy_assign_to_employee')
             ->join('department','department.department_id','=','policy_assign_to_employee.main_department_id')
             ->join('policy','policy.policy_id','=','policy_assign_to_employee.main_policy_id')
@@ -158,11 +153,44 @@ class EmployeeController extends Controller
             ->count();
 
             if($haveMcq>0){
-             $mcq_test = 1;
+                
+                $passMarkDetails = DB::table('policy')
+                ->join('pass_mark','pass_mark.policy_main_id','=','policy.policy_id')
+                ->where('pass_mark.policy_main_id',$id)
+                ->first();
+
+                if($passMarkDetails){
+                    $pass_mark = $passMarkDetails->pass_mark;
+
+                            $user_mark = McqResultModel::where('main_policy_id',$id)
+                        ->where('main_employee_id',session('employee'))
+                        ->orderBy('marks','DESC')
+                        ->select('marks')
+                        ->first();
+
+                if($user_mark){
+
+                    $mark = $user_mark->marks;
+                    
+                    if($mark>=$pass_mark){
+                        $mcq_test = 2;
+                     }else{
+                 $mcq_test = 1;
+                     }
+                }else{
+                    $mcq_test = 1;
+                        }
+                }else{
+                    $mcq_test = 1;
+                        }
             }else{
              $mcq_test = 0;
             }
-      
+            // echo $mcq_test;
+            
+            // die();
+
+          
             return view('employeePanel.dashboard.policy.show_policy',['employee'=>$employee_data,'policy'=>$policy,'mcq_test'=>$mcq_test]);
         }
 
@@ -266,6 +294,50 @@ if ($correct_ans_for_question !== null && $user_ans === $correct_ans_for_questio
            $save_result->date_time = date('s:i:H d-m-Y'); 
            $save_result->save();
            return self::swal(true,'Answer Submited','success');
+        }
+
+        // checkPolicyStatus
+        public function checkPolicyStatus(Request $request)
+        {
+         $id = $request->id;
+         
+      
+    
+
+        $checkStatus = McqResultModel::where('main_policy_id',$id)
+        ->where('main_employee_id',session('employee'))
+        ->orderBy('marks','DESC')
+        ->select('marks')
+        ->first();
+
+        if(!$checkStatus){
+            return self::swal(false,'View Policy','error');
+        }
+
+        $passMarkDetails = DB::table('policy')
+        ->join('pass_mark','pass_mark.policy_main_id','=','policy.policy_id')
+        ->where('pass_mark.policy_main_id',$id)
+        ->first();
+        
+        if($passMarkDetails){
+            $passMark = $passMarkDetails->pass_mark;
+        }else{
+           return self::swal(false,'Contact with Admin','error');
+        }
+
+        array($checkStatus);
+   
+        $userMark =  $checkStatus['marks'];
+
+
+        if($userMark>=$passMark){
+            return self::swal(true,'Successful, Download Paper','success');
+
+        }else{
+            return self::swal(false,'Failed, Retest Exam','error');
+        }
+
+
         }
 
         // END CLASS 

@@ -13,21 +13,10 @@
           <div class=" bb-dashed-n30" style="display: flex; align-items:center; gap:15px;">
             <div>
                 <h6 class="text-success">I have carefully reviewed the {{$policy->policy_title}} privacy policy and accept all its terms and conditions.</h6>
-
-                @if($mcq_test>0)
-               <p style="margin-top: 15px; color:#63c763;">Please compleate the test and get Policy Paper.</p>
-                @else 
-               <p style="margin-top: 15px; color:#63c763;">Click Get policy paper to download policy paper</p>
-                @endif
             </div>
             <div>
-                @if($mcq_test==1)
-                <a href="{{url('/employee/policy-test')}}/{{$policy->policy_id}}"><button class="btn-primary">Start Test</button></a>
-                @elseif($mcq_test==0)
-                <a href="{{url('/employee/get-policy')}}/{{$policy->policy_id}}"><button class="btn-primary">Get Policy Paper</button></a>
-                @else   <a href="{{url('/employee/get-policy')}}/{{$policy->policy_id}}"><button class="btn-primary">Get Policy Paper</button></a>
-
-                @endif
+             
+                <a href="{{url('/employee/policy-test')}}/{{$policy->policy_id}}"><button class="btn-primary">Download</button></a>
             </div>
           </div>
           {{-- <img src="{{url('/policy_files')}}/{{$policy->policy_file}}" alt=""> --}}
