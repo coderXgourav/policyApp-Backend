@@ -33,7 +33,10 @@ Route::group(['middleware'=>'employee'],function(){
     Route::post('/employee/submit-mcq',[EmployeeController::class,'policyTestSubmit']);
     Route::get('/employee/send-answer',[EmployeeController::class,'mcqCheck']);
     Route::get('/employee/check-status',[EmployeeController::class,'checkPolicyStatus']);
-    // Route::get('/employee/get-policy/{id}',[EmployeeController::class,''])
+    Route::get('/employee/get-policy/{id}',[EmployeeController::class,'getPolicyPaper']);
+
+    Route::post('/employee/submit-signature', [EmployeeController::class, 'uploadSign']);
+
 
 
 });

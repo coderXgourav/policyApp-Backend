@@ -340,5 +340,85 @@ if ($correct_ans_for_question !== null && $user_ans === $correct_ans_for_questio
 
         }
 
+        // getPolicyPaper
+
+        public function getPolicyPaper($id)
+        {
+
+          
+        $checkStatus = McqResultModel::where('main_policy_id',$id)
+        ->where('main_employee_id',session('employee'))
+        ->orderBy('marks','DESC')
+        ->select('marks')
+        ->first();
+
+        if(!$checkStatus){
+            return redirect('/employee/view-policy');
+        }
+
+        $passMarkDetails = DB::table('policy')
+        ->join('pass_mark','pass_mark.policy_main_id','=','policy.policy_id')
+        ->where('pass_mark.policy_main_id',$id)
+        ->first();
+        
+        if($passMarkDetails){
+            $passMark = $passMarkDetails->pass_mark;
+        }else{
+            return redirect('/employee/view-policy');
+        }
+
+        array($checkStatus);
+   
+        $userMark =  $checkStatus['marks'];
+
+
+        if($userMark>=$passMark){
+            $policy = PolicyModel::find($id);
+            $employee_data = self::employeeDetails();
+            
+         return view('employeePanel.dashboard.policy.e_sign_policy',['employee'=>$employee_data,'policy'=>$policy]);
+
+        }else{
+            return redirect('/employee/view-policy');
+        }
+            
+        }
+        
+
+           // uploadSign
+           public function uploadSign(Request $request)
+           {
+               $folderPath = public_path('signature/');
+           
+               // Extract base64 data
+               $image_parts = explode(";base64,", $request->signed);
+           
+               // Determine image type
+               $image_type_aux = explode("image/", $image_parts[0]);
+               $image_type = $image_type_aux[1];
+           
+               // Generate unique file name
+               $file = uniqid() . '.' . $image_type;
+               $file_path = $folderPath . $file;
+           
+               // Decode base64 data
+               $image_base64 = base64_decode($image_parts[1]);
+           
+               // Save decoded image to file
+               $save_result = file_put_contents($file_path, $image_base64);
+           
+               if ($save_result !== false) {
+                   return response()->json([
+                    'status'=>true
+                   ]);
+               } else {
+                return response()->json([
+                    'status'=>false
+                   ]);
+               }
+           }
+   
+             
+
         // END CLASS 
 }
