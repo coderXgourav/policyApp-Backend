@@ -52,8 +52,8 @@
                       $no = 1;
                   @endphp
                   @foreach ($question as $item)
-                  <div class="col-span-2 question_palate">
-                    <p class="l-text font-medium mb-4"> {{$no++}}. {{$item->question}} ? </p>
+                  <div class="col-span-2 question_palate" style="color:white;">
+                    <p class="l-text font-medium mb-4" style="color: white;"> {{$no++}}. {{$item->question}} ? </p>
                     <ul class="flex flex-wrap gap-4">
                       <li>
                         <div >

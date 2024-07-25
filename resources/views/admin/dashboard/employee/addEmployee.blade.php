@@ -69,7 +69,7 @@
                   <div class="col-span-2">
                     <div class="" class="">
                      <select name="empType" id="" class="selectForm" required>
-                        <option value="">Employee Type</option>
+                        <option value="">Employee Department</option>
                         @foreach($departments as $item)
                         <option value="{{$item->department_id}}">{{$item->department_name}} </option>
                         @endforeach

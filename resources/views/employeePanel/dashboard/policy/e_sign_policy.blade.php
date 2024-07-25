@@ -33,7 +33,7 @@
          
          
         <form id="uploadSignature">
-
+<input type="hidden" name="policy_id" value="{{$policy->policy_id}}">
           <h6 class="text-success" for="checkbox">
 
             <input type="checkbox" name="check"  required/>  I acknowledge that I have received and reviewed the {{$policy->policy_title}} . I understand the contents of the policy and agree to comply with its requirements and guidelines.

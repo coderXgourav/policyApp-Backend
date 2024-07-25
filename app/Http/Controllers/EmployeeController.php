@@ -9,7 +9,11 @@ use App\Models\DepartmentModel;
 use App\Models\PolicyModel; 
 use App\Models\McqResultModel;
 use App\Models\DummyMarkModel;
-use App\Models\McqModel;
+use App\Models\PassMarkModel;
+use App\Models\SignatureModel;
+use App\Models\McqModel; 
+use App\Models\PolicyAssignToEmployeeModel; 
+
 use Session; 
 use DB;
 
@@ -136,6 +140,7 @@ class EmployeeController extends Controller
             ->join('policy','policy.policy_id','=','policy_assign_to_employee.main_policy_id')
             ->join('employee','employee.department_id','=','department.department_id')
             ->where('employee.employee_id',session('employee'))
+            ->orderBy('policy_assign_to_employee.policy_assign_to_employee_id','DESC')
             ->get();
           
             return view('employeePanel.dashboard.policy.viewPolicy',['employee'=>$employee_data,'policy'=>$group_policy]);
@@ -154,6 +159,16 @@ class EmployeeController extends Controller
 
             if($haveMcq>0){
                 
+                
+                $status = PolicyAssignToEmployeeModel::where('main_policy_id',$id)
+                ->where('main_employee_id',session('employee'))->first();
+
+                if($status->status==0){
+                    $status->status=1;
+                }
+                
+                $status->save();
+                
                 $passMarkDetails = DB::table('policy')
                 ->join('pass_mark','pass_mark.policy_main_id','=','policy.policy_id')
                 ->where('pass_mark.policy_main_id',$id)
@@ -162,7 +177,7 @@ class EmployeeController extends Controller
                 if($passMarkDetails){
                     $pass_mark = $passMarkDetails->pass_mark;
 
-                            $user_mark = McqResultModel::where('main_policy_id',$id)
+                        $user_mark = McqResultModel::where('main_policy_id',$id)
                         ->where('main_employee_id',session('employee'))
                         ->orderBy('marks','DESC')
                         ->select('marks')
@@ -184,7 +199,17 @@ class EmployeeController extends Controller
                     $mcq_test = 1;
                         }
             }else{
+                $status = PolicyAssignToEmployeeModel::where('main_policy_id',$id)
+                ->where('main_employee_id',session('employee'))->first();
+                
+                if($status->status==0){
+                    $status->status=1;
+                    $status->save();
+                }
+              
+            
              $mcq_test = 0;
+             
             }
             // echo $mcq_test;
             
@@ -272,6 +297,13 @@ $questions = DB::table('mcq')
 ->where('policy.policy_id', $request->policy_id)
 ->pluck('mcq.mcq_id'); // Retrieve only the mcq_id values
 
+$pass_mark = PassMarkModel::where('policy_main_id',$request->policy_id)->first();
+
+if(!$pass_mark){
+    return self::swal(false,'Contact with Admin','warning');
+}
+$pass_mark = $pass_mark->pass_mark;
+
 // Step 2: Retrieve correct answers for all questions
 $correct_ans = McqModel::whereIn('mcq_id', $questions)->pluck('ans', 'mcq_id');
 
@@ -287,14 +319,29 @@ if ($correct_ans_for_question !== null && $user_ans === $correct_ans_for_questio
 }
 }
 
-           $save_result = new McqResultModel;
-           $save_result->main_policy_id = $request->policy_id;
-           $save_result->main_employee_id = session('employee');
-           $save_result->marks = $score;
-           $save_result->date_time = date('s:i:H d-m-Y'); 
-           $save_result->save();
-           return self::swal(true,'Answer Submited','success');
+if($score>=$pass_mark){
+
+$save_result = new McqResultModel;
+$save_result->main_policy_id = $request->policy_id;
+$save_result->main_employee_id = session('employee');
+$save_result->marks = $score;
+$save_result->date_time = date('s:i:H d-m-Y'); 
+$save_result->save();
+
+$title = "Policy Test Pass (Mark-".$score.")";
+
+return self::swal($request->policy_id,$title,'success');
+
+}else{
+    $title = "Policy Test Fail (Mark-".$score.")";
+     return self::swal(false,$title,'warning');
+}
+
+          
         }
+
+
+        
 
         // checkPolicyStatus
         public function checkPolicyStatus(Request $request)
@@ -345,46 +392,69 @@ if ($correct_ans_for_question !== null && $user_ans === $correct_ans_for_questio
         public function getPolicyPaper($id)
         {
 
-          
-        $checkStatus = McqResultModel::where('main_policy_id',$id)
-        ->where('main_employee_id',session('employee'))
-        ->orderBy('marks','DESC')
-        ->select('marks')
-        ->first();
+         $checkMcq = McqModel::where('main_policy_id',$id)->count();
 
-        if(!$checkStatus){
-            return redirect('/employee/view-policy');
-        }
+         if($checkMcq>0){
+            $checkStatus = McqResultModel::where('main_policy_id',$id)
+            ->where('main_employee_id',session('employee'))
+            ->orderBy('marks','DESC')
+            ->select('marks')
+            ->first();
+    
+            if(!$checkStatus){
+                return redirect('/employee/view-policy');
+            }
+    
+            $passMarkDetails = DB::table('policy')
+            ->join('pass_mark','pass_mark.policy_main_id','=','policy.policy_id')
+            ->where('pass_mark.policy_main_id',$id)
+            ->first();
+            
+            if($passMarkDetails){
+                $passMark = $passMarkDetails->pass_mark;
+            }else{
+                return redirect('/employee/view-policy');
+            }
+    
+            array($checkStatus);
+       
+            $userMark =  $checkStatus['marks'];
+    
+    
+            if($userMark>=$passMark){
+    
+                 $signature = SignatureModel::where('main_employee_id',session('employee'))
+                 ->where('main_policy_id',$id)
+                 ->first();
+                 
+                if($signature){
+                 return redirect('/certificate/certificate.pdf');
+                }
+                $policy = PolicyModel::find($id);
+                $employee_data = self::employeeDetails();
+             return view('employeePanel.dashboard.policy.e_sign_policy',['employee'=>$employee_data,'policy'=>$policy]); 
+            }else{
+                return redirect('/employee/view-policy');
+            }
+         }else{
+            $signature = SignatureModel::where('main_employee_id',session('employee'))
+            ->where('main_policy_id',$id)
+            ->first();
+            
+           if($signature){
+            return redirect('/certificate/certificate.pdf');
+           }
 
-        $passMarkDetails = DB::table('policy')
-        ->join('pass_mark','pass_mark.policy_main_id','=','policy.policy_id')
-        ->where('pass_mark.policy_main_id',$id)
-        ->first();
-        
-        if($passMarkDetails){
-            $passMark = $passMarkDetails->pass_mark;
-        }else{
-            return redirect('/employee/view-policy');
-        }
-
-        array($checkStatus);
-   
-        $userMark =  $checkStatus['marks'];
-
-
-        if($userMark>=$passMark){
-            $policy = PolicyModel::find($id);
             $employee_data = self::employeeDetails();
-            
-         return view('employeePanel.dashboard.policy.e_sign_policy',['employee'=>$employee_data,'policy'=>$policy]);
+            $policy = PolicyModel::find($id);
+ return view('employeePanel.dashboard.policy.e_sign_policy',['employee'=>$employee_data,'policy'=>$policy]); 
+           
+         }
+                
+      }
 
-        }else{
-            return redirect('/employee/view-policy');
-        }
-            
-        }
+
         
-
            // uploadSign
            public function uploadSign(Request $request)
            {
@@ -400,6 +470,7 @@ if ($correct_ans_for_question !== null && $user_ans === $correct_ans_for_questio
                // Generate unique file name
                $file = uniqid() . '.' . $image_type;
                $file_path = $folderPath . $file;
+             
            
                // Decode base64 data
                $image_base64 = base64_decode($image_parts[1]);
@@ -408,17 +479,33 @@ if ($correct_ans_for_question !== null && $user_ans === $correct_ans_for_questio
                $save_result = file_put_contents($file_path, $image_base64);
            
                if ($save_result !== false) {
+
+                    $save = new SignatureModel;
+                    $save->main_employee_id = session('employee');
+                    $save->main_policy_id = $request->policy_id;
+                    $save->signature = $file;
+                    $save->save();
+
+                    $status = PolicyAssignToEmployeeModel::where('main_policy_id',$request->policy_id)
+                    ->where('main_employee_id',session('employee'))->first();
+
+                    if($status->status==1){
+                        $status->status=2;
+                        $status->save();
+                    }
+                   
                    return response()->json([
                     'status'=>true
                    ]);
+
                } else {
                 return response()->json([
                     'status'=>false
                    ]);
                }
            }
-   
-             
 
+     
+   
         // END CLASS 
 }

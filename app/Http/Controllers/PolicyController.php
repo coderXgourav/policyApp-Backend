@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AdminModel;
 use App\Models\PolicyModel;
+use App\Models\PolicyAssignToEmployeeModel;
+use DB;
 
 
 
@@ -79,6 +81,21 @@ class PolicyController extends Controller
         // return view('admin.dashboard.policy.show_policy',['policy'=>$policy]);
 
     }
+
+       //    policyVisibility
+       public function policyVisibility()
+       {
+        $admin_data = self::adminDetails();
+        
+        $policy = DB::table('policy')
+        ->join('policy_assign_to_employee','policy_assign_to_employee.main_policy_id','=','policy.policy_id')
+        ->join('employee','employee.employee_id','=','policy_assign_to_employee.main_employee_id')
+        ->join('department','department.department_id','=','policy_assign_to_employee.main_department_id')
+        ->orderBy('policy_assign_to_employee.policy_assign_to_employee_id','DESC')
+        ->get();
+        return view('admin.dashboard.policy.reports',['admin'=>$admin_data,'policy'=>$policy]);
+           
+       }
  
 
 

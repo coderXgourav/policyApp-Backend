@@ -83,10 +83,12 @@ class McqController extends Controller
     public function viewMcq()
     {
         $admin_data = self::adminDetails();
-       $mcq_data = DB::table('policy')
-                 ->join('mcq','mcq.main_policy_id','policy.policy_id')
-                 ->distinct()
-                 ->get();
+        
+        $mcq_data = DB::table('policy')
+        ->join('mcq', 'mcq.main_policy_id', '=', 'policy.policy_id')
+        ->select('policy.policy_id', 'policy.policy_title') // select specific columns
+        ->distinct('policy.main_policy_id') // distinct based on policy_id
+        ->get();
                  
                 //  echo "<pre>";
                 //  print_r($mcq_data);

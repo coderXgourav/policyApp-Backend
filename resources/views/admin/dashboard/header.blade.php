@@ -591,7 +591,14 @@
           </div>
         </li>
 
-       
+        <li>
+          <a href="{{url('/admin/policy-visibility ')}}"
+            class="flex items-center gap-2.5 hover:bg-primary-50 duration-300 rounded-lg py-2 px-3 menu-link hover:text-primary-300">
+            <i class="las la-file-invoice text-xl text-primary-300"></i>
+            <span>Visibility Reports</span>
+          </a>
+        </li>
+
           </ul>
          
           <ul
@@ -608,7 +615,8 @@
 
         </div>
       </aside>
-      <aside
+
+      {{-- <aside
       :class="[$store.app.sidebar?'translate-x-0':'ltr:-translate-x-full rtl:translate-x-full', $store.app.menu=='hovered'?'block':'hidden']"
       class="fixed top-0 z-[12] h-full xl:w-20 w-[280px] hover:w-[280px] bg-neutral-0 shadow-lg duration-300 dark:bg-neutral-904 hover ltr:left-0 rtl:right-0 group">
       <div class="px-3 xxl:px-4 pt-3 sm:pt-4 lg:pt-6">
@@ -1059,10 +1067,11 @@
           </li>
         </ul>
       </div>
-    </aside>
+    </aside> --}}
     
       <!-- Horizontal topbar -->
-      <nav :class="$store.app.menu=='horizontal'?'hidden xl:block':'hidden'"
+
+      {{-- <nav :class="$store.app.menu=='horizontal'?'hidden xl:block':'hidden'"
         class="fixed z-[9] px-4 top-0 left-0 right-0 w-full mx-auto bg-neutral-0 dark:bg-neutral-904 mt-[60px] md:mt-[66px]">
         <div class="max-w-[1704px] mx-auto">
           <ul class="flex gap-5 items-center">
@@ -1228,7 +1237,8 @@
             </li>
           </ul>
         </div>
-      </nav>
+      </nav> --}}
+
       <!-- Sidebar Overlay -->
       <div @click="$store.app.sidebar=false"
         :class="$store.app.sidebar?'block':'hidden'"

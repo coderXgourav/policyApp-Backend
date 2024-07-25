@@ -35,6 +35,7 @@ Route::group(['middleware'=>'admin'],function(){
     Route::post('/admin/add-policy',[PolicyController::class,'addPolicy']);
     Route::get('/admin/view-policy',[PolicyController::class,'viewPolicyPage']);
     Route::get('/admin/view-policy/{id}',[PolicyController::class,'viewPolicy']);
+    Route::get('/admin/policy-visibility',[PolicyController::class,'policyVisibility']);
 
     // MCQ ROUTES 
      Route::get('/admin/add-mcq',[McqController::class,'addMcqPage']);
@@ -69,6 +70,8 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin/fetch-employee',[PolicyAssignController::class,'fetchDepartmentEmployee']);
     Route::post('/admin/assign-policy',[PolicyAssignController::class,'assignPolicyToEmployee']);
     
+
+
 
 
   
