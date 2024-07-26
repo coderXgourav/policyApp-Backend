@@ -99,7 +99,7 @@
                       </td>
                      
                       <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
-                       <a href="{{url('/admin/view-policy')}}/{{$value->policy_id}}"><button class="btn btn-warning">Update</button></a>
+                       <a href="{{url('/admin/edit-department')}}/{{$value->department_id}}"><button class="btn btn-warning">Update</button></a>
                        <button class="btn btn-danger" onclick="Delete('/admin/delete-department',{{$value->department_id}})">Delete</button>
                       </td>
                      

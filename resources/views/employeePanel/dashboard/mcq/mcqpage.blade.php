@@ -1,3 +1,4 @@
+
 @include('employeePanel.dashboard.header')
 <style>
     .selectForm{
@@ -40,6 +41,11 @@
       :class="[$store.app.sidebar && $store.app.menu=='vertical'?'w-full xl:ltr:ml-[280px] xl:rtl:mr-[280px] xl:w-[calc(100%-280px)]':'w-full',$store.app.sidebar && $store.app.menu=='hovered'?'w-full xl:ltr:ml-[80px] xl:w-[calc(100%-80px)] xl:rtl:mr-[80px]':'w-full', $store.app.menu == 'horizontal' && 'xl:!pt-[118px]', $store.app.contrast=='high'?'bg-neutral-0 dark:bg-neutral-904':'bg-neutral-20 dark:bg-neutral-903']"
       class="w-full text-neutral-700 min-h-screen dark:text-neutral-20 pt-[60px] md:pt-[66px] duration-300"
     >
+    <img src="{{url('/policy_files')}}/{{$mcq[0]->policy_file}}" alt="">
+    <iframe src="{{url('/policy_files')}}/{{$mcq[0]->policy_file}}" style="width: 100%;
+    height: 700px;"></iframe>
+   
+
     <form id="passFail">
       
       <input type="hidden" id="url" value="/employee/submit-mcq">

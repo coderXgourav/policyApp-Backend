@@ -506,6 +506,41 @@ return self::swal($request->policy_id,$title,'success');
            }
 
      
-   
+        //    editEmployeePage 
+        
+        public function editEmployeePage($id){
+            $employee = EmployeeModel::find($id);
+            $admin_data = self::adminDetails();
+            $departments = DepartmentModel::orderBy('department_id','DESC')->get();
+            
+            return view('admin.dashboard.employee.edit_employee',['admin'=>$admin_data,'employee'=>$employee,'departments'=>$departments]);
+        }
+
+
+        public function updateEmployee(Request $request)
+        {
+
+            $check_email = EmployeeModel::where('employee_email',$request->email)->count();
+            $check_number = EmployeeModel::where('employee_number',$request->number)->count();
+            
+          if($check_email){
+            return self::swal(false,'Email Already Exist','warning');
+          }
+          
+          if($check_number){
+            return self::swal(false,'Number Already Exist','warning');
+          }
+
+            
+            $update = EmployeeModel::find($request->id);
+            $update->employee_name = $request->name;
+            $update->employee_email = $request->email;
+            $update->employee_number = $request->number;
+            $update->employee_password = $request->password;
+            $update->department_id = $request->empType;
+            $update->save();
+            return self::swal(true,"Updated",'success');
+            
+        }
         // END CLASS 
 }

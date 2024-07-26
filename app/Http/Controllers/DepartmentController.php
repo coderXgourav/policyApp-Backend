@@ -132,6 +132,56 @@ class DepartmentController extends Controller
         
     }
 
+    // editDepartmentPage
+
+    public function editDepartmentPage($id)
+    {
+      $department = DepartmentModel::find($id);
+      $admin_data = self::adminDetails();
+      
+      if($department){
+        return view('admin.dashboard.department.edit_department',['admin'=>$admin_data,'department'=>$department]);
+      }
+    }
+    
+    // updateDepartment
+
+    public function updateDepartment(Request $request)
+    {
+        $department = DepartmentModel::find($request->department_id);
+        $department->department_name = $request->department_name;
+        $department->save();
+        return self::swal(true,'Updated','success');
+        
+    }
+
+
+    // editPolicyToDepartmentPage
+
+  public function editPolicyToDepartmentPage($id)
+  {
+    $data = PolicyAssignToGroupModel::find($id);
+
+  
+    $admin_data = self::adminDetails();
+    $departments = DepartmentModel::orderBy('department_id','DESC')->get();
+    $policy = PolicyModel::orderBy('policy_id','DESC')->get();
+    return view('admin.dashboard.department.edit_policy_assign_to_group',['admin'=>$admin_data,'data'=>$data,'department'=>$departments,'policy'=>$policy]);
+
+  }
+
+//   updatePolicyToGroup
+
+        public function updatePolicyToGroup(Request $request)
+        {
+            $update = PolicyAssignToGroupModel::find($request->id);
+            $update->main_department_id = $request->department;
+            $update->main_policy_id = $request->policy;
+            $update->save();
+            return self::swal(true,'Updated','success');
+        }
+
+
     // END CLASS 
     
 }

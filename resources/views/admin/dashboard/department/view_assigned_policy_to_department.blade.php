@@ -100,12 +100,16 @@
                         <span class="m-text" >{{$value->department_name}}</span>
                       </td>
                       <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
-                       <a href="{{url('/admin/view-policy')}}/{{$value->main_policy_id}}"><button class="btn btn-warning">View Policy</button></a>
-                       <button class="btn btn-success">Edit</button>
+                       <a href="{{url('/admin/view-policy')}}/{{$value->policy_id}}">
+                        <button class="btn btn-warning">View Policy</button>
+                      </a>
+                      <a href="{{url('/admin/edit-asign-department')}}/{{$value->policy_assign_to_group_id}}">
+                      <button class="btn btn-success">Edit</button>
+                    </a>
                        <button class="btn btn-danger" onclick="Delete('/admin/delete-asign-department',{{$value->policy_assign_to_group_id}})">Delete</button>
                       </td>
                      
-         
+
                     </tr>
                       @endforeach
      

@@ -120,7 +120,7 @@
                     <span>{{$value->department_name}}</span>
                   </td>
                   <td class="px-6" :class="dense? 'py-2': 'py-2 lg:py-3'">
-                    <a href="#" class="btn btn-primary">Update</a>
+                    <a href="{{url('/admin/edit-employee')}}/{{$value->employee_id}}" class="btn btn-primary">Update</a>
                   <button type="button" class="btn btn-danger" onclick="Delete('/admin/delete-employee',{{$value->employee_id}})">Delete</button>
                   </td>
                 </tr>

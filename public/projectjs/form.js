@@ -102,6 +102,7 @@ $("#passFail").validate({
                 $("#btn").attr("disabled", true);
             },
             success: function (data) {
+                $("#passFail").trigger("reset");
                 $("#btn").html(btn);
                 $("#btn").attr("disabled", false);
                 swal({
@@ -115,6 +116,7 @@ $("#passFail").validate({
                 }
             },
             error: function () {
+                $("#passFail").trigger("reset");
                 swal({
                     icon: "error",
                     title: "Technical Issue.!",

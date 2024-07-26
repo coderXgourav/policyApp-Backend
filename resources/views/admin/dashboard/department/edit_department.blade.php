@@ -7,16 +7,17 @@
     >
       <div :class="[$store.app.menu=='horizontal' ? 'max-w-[1704px] mx-auto xxl:px-0 xxl:pt-8':'',$store.app.stretch?'xxxl:max-w-[92%] mx-auto':'']" class="p-3 md:p-4 xxl:p-6">
         <div class="white-box">
-          <h4 class="bb-dashed-n30">Create a new Department</h4>
+          <h4 class="bb-dashed-n30">Edit Department</h4>
           <div class="flex flex-col gap-4 xxl:gap-6">
             <form  id="form" class="single-file">
-              <input type="hidden" id="url" value="/admin/add-department">
+              <input type="hidden" id="url" value="/admin/edit-department">
               <input type="hidden" id="method" value="POST">
-              <input type="hidden" id="btnName" value="Submit">
+              <input type="hidden" id="btnName" value="Update Policy">
+              <input type="hidden" name="department_id" value="{{$department->department_id}}">
               {{@csrf_field()}}
             <div>
               <div class="form-input mb-4 xl:mb-6">
-                <input type="text" name="department_name" id="post_name" placeholder="Department Name" required/>
+                <input type="text" name="department_name" value="{{$department->department_name}}" id="post_name" placeholder="Department Name" required/>
                 <label for="post_name">Department Name</label>
               </div>
             
@@ -24,7 +25,7 @@
               
               <br>
             <div class="col-span-2 flex gap-4">
-              <button type="submit" id="btn" class="btn-primary">Submit  </button>
+              <button type="submit" id="btn" class="btn-primary">Update Policy</button>
             </div>
           </form>
 

@@ -29,6 +29,8 @@ Route::group(['middleware'=>'admin'],function(){
     Route::post('/admin/add-employee',[EmployeeController::class,'addEmployee']);
     Route::get('/admin/view-employee',[EmployeeController::class,'viewEmployee']);
     Route::get('/admin/delete-employee',[EmployeeController::class,'deleteEmployee']);
+    Route::get('/admin/edit-employee/{id}',[EmployeeController::class,'editEmployeePage']);
+    Route::post('/admin/edit-employee',[EmployeeController::class,'updateEmployee']);
 
     // POLICY ROUTES 
     Route::get('/admin/add-policy',[PolicyController::class,'addPolicyPage']);
@@ -65,7 +67,11 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin/delete-department',[DepartmentController::class,'deleteDepartment']);
     Route::get('/admin/view-assign-policy-department',[DepartmentController::class,'viewAssignedDepartment']);
     Route::get('/admin/delete-asign-department',[DepartmentController::class,'deleteAsignPolicyToDepartment']);
-
+    Route::get('/admin/edit-department/{id}',[DepartmentController::class,'editDepartmentPage']);
+    Route::post('/admin/edit-department',[DepartmentController::class,'updateDepartment']);
+    Route::get('/admin/edit-asign-department/{id}',[DepartmentController::class,'editPolicyToDepartmentPage']);
+    Route::post('/admin/update-assign-policy-to-group',[DepartmentController::class,'updatePolicyToGroup']);
+    
 
     // ASSIGNMENT ROUTE 
 
@@ -74,6 +80,7 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin/fetch-employee',[PolicyAssignController::class,'fetchDepartmentEmployee']);
     Route::post('/admin/assign-policy',[PolicyAssignController::class,'assignPolicyToEmployee']);
     Route::get('/admin/delete-assign-policy-to-employee',[PolicyAssignController::class,'deletePolicyAssignToEmployee']);
+
     
 
 
