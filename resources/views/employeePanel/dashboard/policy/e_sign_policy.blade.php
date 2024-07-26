@@ -2,8 +2,8 @@
 
 @include('employeePanel.dashboard.header')
 
-  <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css" rel="stylesheet"> 
-<link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
+<link rel="stylesheet" href="{{url('assets/signature/signature1.css')}}">
+<link rel="stylesheet" href="{{url('assets/signature/signature.css')}}">
 
 <style>
   .error{
@@ -71,12 +71,9 @@
 
   @include('employeePanel.dashboard.footer')
   
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
-
-
+<script src="{{url('assets/signature/sig1.js')}}"></script>
+<script src="{{url('assets/signature/sig2.js')}}"></script>
+<script src="{{url('assets/signature/sig3.js')}}"></script>
 
     <script type="text/javascript">
     var sig = $('#sig').signature({syncField: '#signature64', syncFormat: 'PNG'});

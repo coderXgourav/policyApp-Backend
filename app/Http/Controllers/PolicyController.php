@@ -96,6 +96,14 @@ class PolicyController extends Controller
         return view('admin.dashboard.policy.reports',['admin'=>$admin_data,'policy'=>$policy]);
            
        }
+
+      //  deletePolicy
+      public function deletePolicy(Request $request)
+      {
+        $delete = PolicyModel::find($request->id)->delete();
+        return self::swal(true,'Deleted','success');
+        
+      }
  
 
 

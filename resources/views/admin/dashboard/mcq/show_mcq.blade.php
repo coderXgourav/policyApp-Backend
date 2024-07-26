@@ -52,8 +52,9 @@
                       $no = 1;
                   @endphp
                   @foreach ($question as $item)
-                  <div class="col-span-2 question_palate" style="color:white;">
+                  <div class="col-span-2 question_palate" style="color:white;" id="{{$item->mcq_id}}">
                     <p class="l-text font-medium mb-4" style="color: white;"> {{$no++}}. {{$item->question}} ? </p>
+                  
                     <ul class="flex flex-wrap gap-4">
                       <li>
                         <div >
@@ -75,12 +76,14 @@
                           <label class="primary" for="3"> (D) {{$item->option_d}}</label>
                         </div>
                       </li>
+                     
                     </ul>
-                </div>
+                      <div style="margin-top:12px;">
+                       <button class="btn btn-success">Update</button>
+                       <button type="button" class="btn btn-warning"  onclick="Delete('/admin/delete-mcq',{{$item->mcq_id}})">Delete</button>
+                      </div>
+                      </div>
                   @endforeach
-                  
-                    
-      
                  
                 </div>
                 

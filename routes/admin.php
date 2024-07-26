@@ -36,12 +36,14 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin/view-policy',[PolicyController::class,'viewPolicyPage']);
     Route::get('/admin/view-policy/{id}',[PolicyController::class,'viewPolicy']);
     Route::get('/admin/policy-visibility',[PolicyController::class,'policyVisibility']);
+    Route::get('/admin/delete-policy',[PolicyController::class,'deletePolicy']);
 
     // MCQ ROUTES 
      Route::get('/admin/add-mcq',[McqController::class,'addMcqPage']);
      Route::post('/admin/add-mcq',[McqController::class,'addMcq']);
      Route::get('/admin/view-mcq',[McqController::class,'viewMcq']);
      Route::get('/admin/show-question/{id}',[McqController::class,'showMcq']);
+     Route::get('/admin/delete-mcq',[McqController::class,'deleteMcq']);
 
 
     // MARKS ROUTE 
@@ -50,6 +52,7 @@ Route::group(['middleware'=>'admin'],function(){
     Route::post('/admin/set-marks',[McqController::class,'setPassMark']);
     Route::get('/admin/fetch-no-of-question',[McqController::class,'showNumberOfQuestion']);
     Route::get('/admin/view-mcq-marks',[McqController::class,'viewSetMarks']);
+    Route::get('/admin/delete-passmark',[McqController::class,'deleteSetMark']);
     
  
     // DEPARTMENT ROUTE 
@@ -61,6 +64,7 @@ Route::group(['middleware'=>'admin'],function(){
     Route::post('/admin/assign-policy-to-group',[DepartmentController::class,'assignToGroup']);
     Route::get('/admin/delete-department',[DepartmentController::class,'deleteDepartment']);
     Route::get('/admin/view-assign-policy-department',[DepartmentController::class,'viewAssignedDepartment']);
+    Route::get('/admin/delete-asign-department',[DepartmentController::class,'deleteAsignPolicyToDepartment']);
 
 
     // ASSIGNMENT ROUTE 
@@ -69,6 +73,7 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin/view-assign-policy',[PolicyAssignController::class,'viewAssignPolicy']);
     Route::get('/admin/fetch-employee',[PolicyAssignController::class,'fetchDepartmentEmployee']);
     Route::post('/admin/assign-policy',[PolicyAssignController::class,'assignPolicyToEmployee']);
+    Route::get('/admin/delete-assign-policy-to-employee',[PolicyAssignController::class,'deletePolicyAssignToEmployee']);
     
 
 

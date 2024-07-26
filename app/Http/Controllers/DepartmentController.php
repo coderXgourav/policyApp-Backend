@@ -124,6 +124,14 @@ class DepartmentController extends Controller
 
     }
 
+    // deleteDepartment
+    public function deleteAsignPolicyToDepartment(Request $request)
+    {
+        $delete = PolicyAssignToGroupModel::find($request->id)->delete();
+        return self::swal(true,'Deleted','success');
+        
+    }
+
     // END CLASS 
     
 }

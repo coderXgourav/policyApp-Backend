@@ -86,9 +86,18 @@ class PolicyAssignController extends Controller
         ->join('department','department.department_id','=','policy_assign_to_employee.main_department_id')
         ->join('employee','employee.employee_id','=','policy_assign_to_employee.main_employee_id')
         ->join('policy','policy.policy_id','=','main_policy_id')
+        ->orderBy('policy_assign_to_employee_id','DESC')
         ->get();
 
         return view('admin.dashboard.policy.view_assigned_policy',['admin'=>$admin_data,'data'=>$policy]);
+    }
+
+    // deletePolicyAssignToEmployee
+    public function deletePolicyAssignToEmployee(Request $request)
+    {
+        $delete = PolicyAssignToEmployeeModel::find($request->id)->delete();
+        return self::swal(true,'Deleted','success');
+        
     }
 
     // END OF CLASS 

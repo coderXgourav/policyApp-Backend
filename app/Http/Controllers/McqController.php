@@ -122,7 +122,7 @@ class McqController extends Controller
     
       $admin_data = self::adminDetails();
 
-      $policy = PolicyModel::where('pass_mark_status',0)->orderBy('policy_id','DESC')->get();
+      $policy = PolicyModel::orderBy('policy_id','DESC')->get();
 
 
       return view('admin.dashboard.mcq.setMcqMarks',['admin'=>$admin_data,'policy'=>$policy]);
@@ -131,10 +131,10 @@ class McqController extends Controller
     // setPassMark
     public function setPassMark(Request $request)
     {
-        $check = PolicyModel::find($request->policy);
+        $check = PassMarkModel::where('policy_main_id',$request->policy)->count();
      
-        if($check->pass_mark_status>0){
-            return self::swal(false,'Already Marks set','warning');
+        if($check>0){
+            return self::swal(false,'Already Set Marks ','warning');
         }
 
         $passMark = new PassMarkModel;
@@ -143,10 +143,6 @@ class McqController extends Controller
         
         $passMark->save();
 
-        $policyStatusUpdate = PolicyModel::find($request->policy);
-        $policyStatusUpdate->pass_mark_status = 1;
-        $policyStatusUpdate->save();
-         
         return self::swal(true,'Successfull','success');
     }
 
@@ -167,6 +163,21 @@ class McqController extends Controller
       ->get();
       return view('admin.dashboard.mcq.viewSetMarks',['admin'=>$admin_data,'marks'=>$setMarks]);
 
+    }
+
+    // deleteMcq
+    public function deleteMcq(Request $request)
+    {
+        $delete = McqModel::find($request->id)->delete();
+        return self::swal(true,'Deleted','success');
+        
+    }
+
+    function deleteSetMark(Request $request)
+    {
+        $delete = PassMarkModel::find($request->id)->delete();
+        return self::swal(true,'Deleted','success');
+        
     }
 
 

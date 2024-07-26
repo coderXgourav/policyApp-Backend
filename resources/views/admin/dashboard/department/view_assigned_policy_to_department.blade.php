@@ -80,7 +80,7 @@
                       @foreach($data as $value)
                       <tr
                       class="border-b border-neutral-30 duration-300 hover:bg-neutral-20 dark:border-neutral-500 dark:hover:bg-neutral-903"
-                      :class="file.checked?'!bg-primary-300/10':'bg-neutral-0 dark:bg-neutral-904'">
+                      :class="file.checked?'!bg-primary-300/10':'bg-neutral-0 dark:bg-neutral-904'" id="{{$value->policy_assign_to_group_id}}">
                       <td class="px-6 w-[72px]"
                         :class="dense? 'py-1.5': 'py-3'">
                         <label for="">{{$no++}}</label>
@@ -102,7 +102,7 @@
                       <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
                        <a href="{{url('/admin/view-policy')}}/{{$value->main_policy_id}}"><button class="btn btn-warning">View Policy</button></a>
                        <button class="btn btn-success">Edit</button>
-                       <button class="btn btn-danger">Delete</button>
+                       <button class="btn btn-danger" onclick="Delete('/admin/delete-asign-department',{{$value->policy_assign_to_group_id}})">Delete</button>
                       </td>
                      
          

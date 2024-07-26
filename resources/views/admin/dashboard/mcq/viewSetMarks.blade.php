@@ -79,7 +79,7 @@
                       @foreach($marks as $value)
                       <tr
                       class="border-b border-neutral-30 duration-300 hover:bg-neutral-20 dark:border-neutral-500 dark:hover:bg-neutral-903"
-                      :class="file.checked?'!bg-primary-300/10':'bg-neutral-0 dark:bg-neutral-904'">
+                      :class="file.checked?'!bg-primary-300/10':'bg-neutral-0 dark:bg-neutral-904'" id="{{$value->pass_mark_id}}">
                       <td class="px-6 w-[72px]"
                         :class="dense? 'py-1.5': 'py-3'">
                         <label for="">{{$no++}}</label>
@@ -108,7 +108,7 @@
                        <a href="{{url('/admin/show-question')}}/{{$value->policy_id}}"><button class="btn btn-primary">Update</button></a>
                       </td>
                       <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
-                       <button class="btn btn-warning">Delete</button>
+                       <button class="btn btn-warning"  onclick="Delete('/admin/delete-passmark',{{$value->pass_mark_id}})">Delete</button>
                        </td>
                     </tr>
                       @endforeach
