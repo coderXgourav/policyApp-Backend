@@ -112,7 +112,7 @@
                      
                       <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
                        <a href="{{url('/admin/view-policy')}}/{{$value->main_policy_id}}"><button class="btn btn-warning">View Policy</button></a>
-                       <button class="btn btn-success">Edit</button>
+                       <a href="{{url('/admin/edit-assigned-policy-to-employee')}}/{{$value->policy_assign_to_employee_id}}"><button class="btn btn-success">Edit</button></a>
                        <button class="btn btn-danger" onclick="Delete('/admin/delete-assign-policy-to-employee',{{$value->policy_assign_to_employee_id}})">Delete</button>
                       </td>
                      

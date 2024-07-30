@@ -180,6 +180,67 @@ class McqController extends Controller
         
     }
 
+    // editMcqPage
+    public function editMcqPage($id)
+    {
+        $mcq = McqModel::find($id);
+        $admin_data = self::adminDetails();
+        $policy = PolicyModel::orderBy('policy_id','DESC')->get();
+        return view('admin.dashboard.mcq.edit_mcq',['mcq'=>$mcq,'admin'=>$admin_data,'policy'=>$policy]);
+
+    }
+
+    // updateMcq
+    public function updateMcq(Request $request)
+    {
+
+        if($request->ans_option==$request->option_a){
+            $ans_option = $request->option_a;
+        }else if($request->ans_option==$request->option_b){
+            $ans_option = $request->option_b;
+        }
+        else if($request->ans_option==$request->option_c){
+            $ans_option = $request->option_c;
+        }else{
+            $ans_option = $request->option_d;
+        }
+
+        $mcq = McqModel::find($request->id);
+        $mcq->main_policy_id = $request->policy;
+        $mcq->option_a = $request->option_a;
+        $mcq->option_b = $request->option_b;
+        $mcq->option_c = $request->option_c;
+        $mcq->option_d = $request->option_d;
+        $mcq->ans = $ans_option;
+        $mcq->save();
+        return self::swal(true,'Updated','success');
+
+    }
+
+    // editPassMark
+    public function editPassMark($id)
+    {
+      $admin_data = self::adminDetails();
+      $mark = PassMarkModel::find($id);
+      $policy_id = $mark->policy_main_id;
+      $question = McqModel::where('main_policy_id',$policy_id)->count();
+      $policy = PolicyModel::orderBy('policy_id','DESC')->get();
+      return view('admin.dashboard.mcq.edit_mark',['admin'=>$admin_data,'mark'=>$mark,'policy'=>$policy,'question'=>$question]);
+    }
+
+    // updatePassMark
+    public function updatePassMark(Request $request)
+    {
+        $id = $request->id;
+
+
+        $update = PassMarkModel::find($id);
+        $update->policy_main_id = $request->policy;
+        $update->pass_mark = $request->pass_marrk;
+        $update->save();
+        return self::swal(true,'Updated','success');
+
+    }
 
     // END OF CLASS 
 

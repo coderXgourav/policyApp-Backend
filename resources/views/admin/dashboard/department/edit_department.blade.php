@@ -12,7 +12,7 @@
             <form  id="form" class="single-file">
               <input type="hidden" id="url" value="/admin/edit-department">
               <input type="hidden" id="method" value="POST">
-              <input type="hidden" id="btnName" value="Update Policy">
+              <input type="hidden" id="btnName" value="Update Department">
               <input type="hidden" name="department_id" value="{{$department->department_id}}">
               {{@csrf_field()}}
             <div>
@@ -25,7 +25,7 @@
               
               <br>
             <div class="col-span-2 flex gap-4">
-              <button type="submit" id="btn" class="btn-primary">Update Policy</button>
+              <button type="submit" id="btn" class="btn-primary">Update Department</button>
             </div>
           </form>
 

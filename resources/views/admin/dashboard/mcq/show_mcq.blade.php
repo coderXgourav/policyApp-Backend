@@ -79,7 +79,10 @@
                      
                     </ul>
                       <div style="margin-top:12px;">
-                       <button class="btn btn-success">Update</button>
+                      <a class="btn btn-success" href="{{url('/admin/edit-mcq')}}/{{$item->mcq_id}}"> 
+                        Edit
+                      </a>
+
                        <button type="button" class="btn btn-warning"  onclick="Delete('/admin/delete-mcq',{{$item->mcq_id}})">Delete</button>
                       </div>
                       </div>

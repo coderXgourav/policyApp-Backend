@@ -39,13 +39,18 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin/view-policy/{id}',[PolicyController::class,'viewPolicy']);
     Route::get('/admin/policy-visibility',[PolicyController::class,'policyVisibility']);
     Route::get('/admin/delete-policy',[PolicyController::class,'deletePolicy']);
-
+    Route::get('/admin/edit-policy/{id}',[PolicyController::class,'editPolicyPage']);
+    Route::post('/admin/update-policy',[PolicyController::class,'updatePolicy']);
+    Route::get('/admin/edit-assigned-policy-to-employee/{id}',[PolicyController::class,'editAssignedPolicyToEmployeePage']);
+Route::post('/admin/update-assign-policy',[PolicyController::class,'updateEmployeeAssignedPolicy']);
     // MCQ ROUTES 
      Route::get('/admin/add-mcq',[McqController::class,'addMcqPage']);
      Route::post('/admin/add-mcq',[McqController::class,'addMcq']);
      Route::get('/admin/view-mcq',[McqController::class,'viewMcq']);
      Route::get('/admin/show-question/{id}',[McqController::class,'showMcq']);
      Route::get('/admin/delete-mcq',[McqController::class,'deleteMcq']);
+     Route::get('/admin/edit-mcq/{id}',[McqController::class,'editMcqPage']);
+     Route::post('/admin/update-mcq',[McqController::class,'updateMcq']);
 
 
     // MARKS ROUTE 
@@ -55,6 +60,8 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin/fetch-no-of-question',[McqController::class,'showNumberOfQuestion']);
     Route::get('/admin/view-mcq-marks',[McqController::class,'viewSetMarks']);
     Route::get('/admin/delete-passmark',[McqController::class,'deleteSetMark']);
+    Route::get('/admin/edit-passmark/{id}',[McqController::class,'editPassMark']);
+    Route::post('/admin/update-marks',[McqController::class,'updatePassMark']);
     
  
     // DEPARTMENT ROUTE 

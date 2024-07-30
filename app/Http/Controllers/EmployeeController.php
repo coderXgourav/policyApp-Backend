@@ -523,11 +523,11 @@ return self::swal($request->policy_id,$title,'success');
             $check_email = EmployeeModel::where('employee_email',$request->email)->count();
             $check_number = EmployeeModel::where('employee_number',$request->number)->count();
             
-          if($check_email){
+          if($check_email>1){
             return self::swal(false,'Email Already Exist','warning');
           }
           
-          if($check_number){
+          if($check_number<1){
             return self::swal(false,'Number Already Exist','warning');
           }
 

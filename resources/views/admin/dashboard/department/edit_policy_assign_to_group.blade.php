@@ -41,7 +41,7 @@
 <input type="hidden" id="url" value="/admin/update-assign-policy-to-group">
 <input type="hidden" id="method" value="POST">
 <input type="hidden" name="id" value="{{$data->policy_assign_to_group_id}}">
-<input type="hidden" id="btnName" value="Assign Policy">
+<input type="hidden" id="btnName" value="Update Policy">
     {{@csrf_field()}}
       <div :class="[$store.app.menu=='horizontal' ? 'max-w-[1704px] mx-auto xxl:px-0 xxl:pt-8':'',$store.app.stretch?'xxxl:max-w-[92%] mx-auto':'']" class="p-3 md:p-4 xxl:p-6">
         <div class="white-box">
@@ -77,7 +77,7 @@
                   </div>  
             </div>
                 <div class="flex gap-4 xxl:gap-6">
-                  <button class="btn-primary" id="btn">Send Policy</button>
+                  <button class="btn-primary" id="btn">Update Policy</button>
                 </div>
               </div>
             </div>

@@ -105,7 +105,7 @@
                       </td>
                      
                       <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
-                       <a href="{{url('/admin/show-question')}}/{{$value->policy_id}}"><button class="btn btn-primary">Update</button></a>
+                       <a href="{{url('/admin/edit-passmark')}}/{{$value->pass_mark_id}}"><button class="btn btn-primary">Update</button></a>
                       </td>
                       <td class="px-6" :class="dense? 'py-1.5': 'py-3'">
                        <button class="btn btn-warning"  onclick="Delete('/admin/delete-passmark',{{$value->pass_mark_id}})">Delete</button>
