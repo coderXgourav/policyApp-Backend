@@ -9,6 +9,8 @@ use App\Models\PolicyAssignToEmployeeModel;
 use App\Models\DepartmentModel;
 use App\Models\EmployeeModel;
 use DB;
+use Mail;
+// use App\Mail\policyAssignEmail;
 
 class PolicyAssignController extends Controller
 {
@@ -54,11 +56,17 @@ class PolicyAssignController extends Controller
         ->get();
         return json_encode($employee);
     }
-
+    public function employeeDetails($id)
+    {
+      $employee_id = $id;
+      $employee_data = EmployeeModel::find($employee_id);
+      return $employee_data;
+    }
 
     // assignPolicyToEmployee
     public function assignPolicyToEmployee(Request $request)
     {
+        $empId = $request->employee;
         $check = PolicyAssignToEmployeeModel::where([
             ['main_employee_id',$request->employee],
             ['main_policy_id',$request->policy],
@@ -73,6 +81,17 @@ class PolicyAssignController extends Controller
        $data_store->main_employee_id = $request->employee; 
        $data_store->main_policy_id = $request->policy; 
        $data_store->save();
+
+       $employee = self::employeeDetails($empId);
+
+    $data = ['name'=>$employee->employee_name];
+    $user['to'] = $employee->employee_email;
+    
+  $send =  Mail::send('employeePanel.dashboard.email.policy_assign',$data,function($messages)use($user)
+    {$messages->to($user['to']);
+      $messages->subject('New Policy Assignment');
+    });
+
        return self::swal(true,'Successfull','success');
 
     }

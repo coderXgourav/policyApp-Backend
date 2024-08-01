@@ -36,6 +36,11 @@ Route::group(['middleware'=>'employee'],function(){
     Route::get('/employee/get-policy/{id}',[EmployeeController::class,'getPolicyPaper']);
 
     Route::post('/employee/submit-signature', [EmployeeController::class, 'uploadSign']);
+    
+    // Route::get('/employee/certificate',[EmployeeController::class,'certificatePage']);
+
+    Route::get('/employee/get-certificate/{id}',[EmployeeController::class,'certificateDownloadPage']);
+    Route::get('/employee/certificate',[EmployeeController::class,'employeeCertificatePage']);
 
 
 

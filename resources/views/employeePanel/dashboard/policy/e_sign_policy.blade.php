@@ -44,6 +44,7 @@
           <input type="hidden" id="url" value="/employee/submit-signature">
           <input type="hidden" id="method" value="POST">
           <input type="hidden" id="btnName" value="Save">
+          <input type="hidden" name="policy_id" id="" value="{{$policy->policy_id}}">
           {{@csrf_field()}}
           @csrf
           <div class="col-md-12">
@@ -62,7 +63,10 @@
     height: 1000px;"></iframe> --}}
     <div>
       <br>
-      <a id="download" href="{{url('certificate/certificate.pdf')}}" style="display:none;"><button class="btn-primary">Download Certificate</button></a>
+      <form action="{{url('/employee/certificate')}}" method="GET">
+        <input type="hidden" name="policy_id" id="policy" value="">
+        <button style="display:none;" type="submit" id="download" class="btn-primary" >Download Certificate</button>
+      </form>
   </div>
         </div>
 

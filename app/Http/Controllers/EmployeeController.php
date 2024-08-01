@@ -13,9 +13,10 @@ use App\Models\PassMarkModel;
 use App\Models\SignatureModel;
 use App\Models\McqModel; 
 use App\Models\PolicyAssignToEmployeeModel; 
-
 use Session; 
 use DB;
+use Mail;
+use App\Mail\policyAssignEmail;
 
 class EmployeeController extends Controller
 {
@@ -156,12 +157,13 @@ class EmployeeController extends Controller
             ->join('mcq','mcq.main_policy_id','=','policy.policy_id')
             ->where('policy.policy_id',$id)
             ->count();
+           
 
             if($haveMcq>0){
                 
-                
                 $status = PolicyAssignToEmployeeModel::where('main_policy_id',$id)
-                ->where('main_employee_id',session('employee'))->first();
+                ->where('main_employee_id',session('employee'))
+                ->first();
 
                 if($status->status==0){
                     $status->status=1;
@@ -199,8 +201,10 @@ class EmployeeController extends Controller
                     $mcq_test = 1;
                         }
             }else{
+
                 $status = PolicyAssignToEmployeeModel::where('main_policy_id',$id)
-                ->where('main_employee_id',session('employee'))->first();
+                ->where('main_employee_id',session('employee'))
+                ->first();
                 
                 if($status->status==0){
                     $status->status=1;
@@ -232,6 +236,11 @@ class EmployeeController extends Controller
             $pass_mark = DB::table('policy')
             ->join('pass_mark','pass_mark.policy_main_id','=','policy.policy_id')
             ->first();
+            if($pass_mark){
+                return view('employeePanel.dashboard.mcq.mcqpage',['employee'=>$employee_data,'mcq'=>$questions,'pass_mark'=>$pass_mark->pass_mark]);
+            }else{
+                return redirect('/employee/view-policy');
+            }
 
 
 
@@ -239,7 +248,7 @@ class EmployeeController extends Controller
             // print_r($pass_mark);
             // die();
 
-          return view('employeePanel.dashboard.mcq.mcqpage',['employee'=>$employee_data,'mcq'=>$questions,'pass_mark'=>$pass_mark->pass_mark]);
+         
 
         }
 
@@ -290,12 +299,11 @@ class EmployeeController extends Controller
 
         public function policyTestSubmit(Request $request)
         {
-
        // Step 1: Retrieve all questions related to the policy_id
-$questions = DB::table('mcq')
-->join('policy', 'policy.policy_id', '=', 'mcq.main_policy_id')
-->where('policy.policy_id', $request->policy_id)
-->pluck('mcq.mcq_id'); // Retrieve only the mcq_id values
+        $questions = DB::table('mcq')
+        ->join('policy', 'policy.policy_id', '=', 'mcq.main_policy_id')
+        ->where('policy.policy_id', $request->policy_id)
+        ->pluck('mcq.mcq_id'); // Retrieve only the mcq_id values
 
 $pass_mark = PassMarkModel::where('policy_main_id',$request->policy_id)->first();
 
@@ -395,6 +403,7 @@ return self::swal($request->policy_id,$title,'success');
          $checkMcq = McqModel::where('main_policy_id',$id)->count();
 
          if($checkMcq>0){
+            
             $checkStatus = McqResultModel::where('main_policy_id',$id)
             ->where('main_employee_id',session('employee'))
             ->orderBy('marks','DESC')
@@ -428,7 +437,7 @@ return self::swal($request->policy_id,$title,'success');
                  ->first();
                  
                 if($signature){
-                 return redirect('/certificate/certificate.pdf');
+                 return redirect('/employee/view-policy');
                 }
                 $policy = PolicyModel::find($id);
                 $employee_data = self::employeeDetails();
@@ -442,7 +451,7 @@ return self::swal($request->policy_id,$title,'success');
             ->first();
             
            if($signature){
-            return redirect('/certificate/certificate.pdf');
+            return redirect('/employee/view-policy');
            }
 
             $employee_data = self::employeeDetails();
@@ -495,12 +504,14 @@ return self::swal($request->policy_id,$title,'success');
                     }
                    
                    return response()->json([
-                    'status'=>true
+                    'status'=>true,
+                    'policy_id'=>$request->policy_id
                    ]);
 
                } else {
                 return response()->json([
-                    'status'=>false
+                    'status'=>false,
+                    'policy_id'=>$request->policy_id
                    ]);
                }
            }
@@ -541,6 +552,64 @@ return self::swal($request->policy_id,$title,'success');
             $update->save();
             return self::swal(true,"Updated",'success');
             
+        }
+
+        // certificatePage
+
+        public function certificatePage()
+        {
+            return view('employeePanel.dashboard.policy.certificate');
+        }
+
+
+
+
+        // certificateDownloadPage
+        public function certificateDownloadPage($id)
+        {
+            $check_details = DB::table('employee')
+            ->join('policy_assign_to_employee','policy_assign_to_employee.main_employee_id','=','employee.employee_id')
+            ->join('policy','policy.policy_id','=','policy_assign_to_employee.main_policy_id')
+            ->join('signature','signature.main_employee_id','=','employee.employee_id')
+            ->where('signature.main_employee_id',session('employee'))
+            ->where('signature.main_policy_id',$id)
+            ->where('policy.policy_id',$id)
+            ->where('employee.employee_id',session('employee'))
+            ->first();
+
+            // echo "<pre>";
+            // print_r($check_details);
+            // die();
+
+           $employee_data = self::employeeDetails();
+            if($check_details){
+                return view('employeePanel.dashboard.policy.certificate',['policy'=>$check_details->policy_title,'employee'=>$employee_data]);
+            }
+            return redirect('/employee/view-policy');
+        }
+
+        // employeeCertificatePage
+
+        public function employeeCertificatePage(Request $request)
+        {
+            $id = $request->policy_id;
+
+            $check_details = DB::table('employee')
+            ->join('policy_assign_to_employee','policy_assign_to_employee.main_employee_id','=','employee.employee_id')
+            ->join('policy','policy.policy_id','=','policy_assign_to_employee.main_policy_id')
+            ->join('signature','signature.main_employee_id','=','employee.employee_id')
+            ->where('signature.main_employee_id',session('employee'))
+            ->where('signature.main_policy_id',$id)
+            ->where('policy.policy_id',$id)
+            ->where('employee.employee_id',session('employee'))
+            ->first();
+
+            $employee_data = self::employeeDetails();
+
+            if($check_details){
+                return view('employeePanel.dashboard.policy.certificate',['policy'=>$check_details->policy_title,'employee'=>$employee_data]);
+            }
+            return redirect('/employee/view-policy');
         }
         // END CLASS 
 }

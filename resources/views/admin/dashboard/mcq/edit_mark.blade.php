@@ -32,6 +32,7 @@
     <form id="form">
       <input type="hidden" id="url" value="/admin/update-marks">
       <input type="hidden" name="id" value="{{$mark->pass_mark_id}}">
+      <input type="hidden" name="policy" value="{{$mark->policy_main_id}}">
       <input type="hidden" id="method" value="POST">
       <input type="hidden" id="btnName" value="Submit">
       {{@csrf_field()}}
@@ -48,7 +49,7 @@
                     <div class="col-span-2">
                         <div class="" class="">
                             {{-- <label for="" class="text-sm">Select Policy</label> --}}
-                         <select name="policy" id="" class="w-full s-text bg-transparent py-2.5 xl:py-3.5 selectForm1" required onchange="showNoOfQuestion(this.value)">
+                         <select name="policy" id="" class="w-full s-text bg-transparent py-2.5 xl:py-3.5 selectForm1" required onchange="showNoOfQuestion(this.value)" disabled>
                             <option value="">Choose privacy policy</option>
                            @foreach ($policy as $item)
                             <option @if($mark->policy_main_id==$item->policy_id)selected @endif value="{{$item->policy_id}}">{{$item->policy_title}}</option>

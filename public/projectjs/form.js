@@ -182,9 +182,16 @@ $("#uploadSignature").validate({
                 $("#btn").html(btn);
                 $("#btn").attr("disabled", false);
                 if (data.status) {
+                    $('#policy').val(data.policy_id);
                     $("#btn").hide();
                     $("#clear").hide();
                     $("#download").show();
+                   
+                }else{
+                    swal({
+                        icon: "warning",
+                        title: "Try again later",
+                    });
                 }
             },
             error: function () {

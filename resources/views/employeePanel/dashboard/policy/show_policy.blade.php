@@ -24,15 +24,15 @@
                 @if($mcq_test==1)
                 <a href="{{url('/employee/policy-test')}}/{{$policy->policy_id}}"><button class="btn-primary">Start Test</button></a>
                 @elseif($mcq_test==0)
-                <a href="{{url('/employee/get-policy')}}/{{$policy->policy_id}}"><button class="btn-primary">Get Policy Paper</button></a>
-                @else   <a href="{{url('/employee/get-policy')}}/{{$policy->policy_id}}"><button class="btn-primary">Get Policy Paper</button></a>
+                <a href="{{url('/employee/get-certificate')}}/{{$policy->policy_id}}"><button class="btn-primary">Get Policy Paper</button></a>
+                @else   <a href="{{url('/employee/get-certificate')}}/{{$policy->policy_id}}"><button class="btn-primary">Get Policy Paper</button></a>
 
                 @endif
             </div>
           </div>
           {{-- <img src="{{url('/policy_files')}}/{{$policy->policy_file}}" alt=""> --}}
           <iframe src="{{url('/policy_files')}}/{{$policy->policy_file}}" style="width: 100%;
-    height: 1000px;"></iframe>
+    height: auto;"></iframe>
         </div>
       </div>
     </main>
