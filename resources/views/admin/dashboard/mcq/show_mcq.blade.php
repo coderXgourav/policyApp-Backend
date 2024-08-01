@@ -82,8 +82,9 @@
                       <a class="btn btn-success" href="{{url('/admin/edit-mcq')}}/{{$item->mcq_id}}"> 
                         Edit
                       </a>
+                      
 
-                       <button type="button" class="btn btn-warning"  onclick="Delete('/admin/delete-mcq',{{$item->mcq_id}})">Delete</button>
+                       <button type="button" class="btn btn-warning"  onclick="DeleteAndUpdate('/admin/delete-mcq',{{$item->mcq_id}},{{$policy_id}})">Delete</button>
                       </div>
                       </div>
                   @endforeach

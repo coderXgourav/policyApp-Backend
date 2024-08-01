@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pass_mark', function (Blueprint $table) {
             $table->id('pass_mark_id');
             $table->string('policy_main_id');
-            $table->integer('pass_mark');
+            $table->float('pass_mark', 8, 2);
             $table->integer('mark_status')->default(0);
             $table->timestamps();
         });

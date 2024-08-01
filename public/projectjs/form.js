@@ -205,3 +205,33 @@ $("#uploadSignature").validate({
         });
     },
 });
+
+
+// DeleteAndUpdate
+function DeleteAndUpdate(url, id, updateId) {
+    swal({
+        title: "Are you sure?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url: url,
+                type: "GET",
+                data: { id: id,update_id:updateId },
+                dataType: "JSON",
+                success: function (data) {
+                    swal({
+                        icon: data.icon,
+                        title: data.title,
+                    });
+                    if (data.status) {
+                        $("#" + id).hide();
+                    }
+                },
+            });
+        } else {
+        }
+    });
+}

@@ -72,9 +72,24 @@ class McqController extends Controller
         }else if($ans_option=="D"){
             $mcq->ans = $option_d;
         }
-        
-        $mcq->save();
 
+        $total_mcq = McqModel::where('main_policy_id',$policy)->count();
+        $pass_mark_update = PassMarkModel::where('policy_main_id',$policy)->first();
+        
+        $pass_mark = $total_mcq*75/100;
+
+        if($pass_mark_update){
+            $pass_mark_update->pass_mark= $pass_mark;
+            $pass_mark_update->save();
+        }else{
+
+            $insert = new PassMarkModel;
+            $insert->pass_mark = $pass_mark;
+            $insert->policy_main_id = $policy;
+            $insert->save();
+        }
+        $mcq->save();
+    // echo $pass_mark;
         return self::swal(true,'Successfull','success');
     }
 
@@ -112,7 +127,8 @@ class McqController extends Controller
     {
         $admin_data = self::adminDetails();
         $question = McqModel::where('main_policy_id',$id)->get();
-        return view('admin.dashboard.mcq.show_mcq',['admin'=>$admin_data,'question'=>$question]);
+
+        return view('admin.dashboard.mcq.show_mcq',['admin'=>$admin_data,'question'=>$question,'policy_id'=>$id]);
          
     }
 
@@ -169,6 +185,23 @@ class McqController extends Controller
     public function deleteMcq(Request $request)
     {
         $delete = McqModel::find($request->id)->delete();
+        $policy = $request->update_id;
+
+        $total_mcq = McqModel::where('main_policy_id',$policy)->count();
+        $pass_mark_update = PassMarkModel::where('policy_main_id',$policy)->first();
+        
+        $pass_mark = $total_mcq*75/100;
+
+        if($pass_mark_update){
+            $pass_mark_update->pass_mark= $pass_mark;
+            $pass_mark_update->save();
+        }else{
+            $insert = new PassMarkModel;
+            $insert->pass_mark = $pass_mark;
+            $insert->policy_main_id = $policy;
+            $insert->save();
+        }
+
         return self::swal(true,'Deleted','success');
         
     }

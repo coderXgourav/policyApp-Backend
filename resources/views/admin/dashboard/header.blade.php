@@ -571,7 +571,7 @@
           </div>
         </li>
         
-        <li class="relative">
+        <li class="relative" style="display: none">
           <button :class="opened=='job' ? 'bg-primary-50 text-primary-300' : ''" @click="opened=='job' ? opened = null : opened='job'" class="flex w-full items-center justify-between gap-2 hover:bg-primary-50 duration-300 rounded-lg p-2 xxl:px-3">
             <span class="flex items-center gap-2">
               <i class="las la-briefcase text-xl text-primary-300"></i>
